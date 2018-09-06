@@ -5,12 +5,14 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-/*@import "functions";
-@import "variables";
-@import "mixins";
+
+@import "colorscheme";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+/*@import "mixins";
 @import "root";
-@import "reboot";
-@import "type";
+@import "reboot";*/
+/*@import "type";
 @import "images";
 @import "code";
 @import "grid";
@@ -40,3 +42,4 @@
 @import "carousel";
 @import "utilities";
 @import "print";*/
+@import "index";
