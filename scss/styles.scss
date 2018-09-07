@@ -9,9 +9,9 @@
 @import "colorscheme";
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
-/*@import "mixins";
-@import "root";
-@import "reboot";*/
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
 /*@import "type";
 @import "images";
 @import "code";
@@ -43,3 +43,4 @@
 @import "utilities";
 @import "print";*/
 @import "index";
+@import "categories";
