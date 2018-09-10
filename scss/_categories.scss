@@ -1,0 +1,21 @@
+.categories {
+    @include make-row();
+    margin: 0;
+
+    .category-item {
+        @include make-col(6);
+        border: thin #98878F solid;
+        margin: 0;
+        padding-top: 42%;
+        position: relative;
+        background-color: #2D3142;
+        &-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+}
