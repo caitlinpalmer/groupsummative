@@ -1,6 +1,7 @@
 .header {
     height: 124px;
-    background-color: #2D3142;
+    background-color: $dark;
+    width: 100%;
 }
 
 .header {
@@ -40,5 +41,6 @@
     a>i {
         font-size: 27px;
         margin: 2px;
+        color: $gray-600;
     }
 }
