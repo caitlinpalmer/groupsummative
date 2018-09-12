@@ -3,6 +3,11 @@
     margin: 0;
     width: 100%;
 
+    .category-item:hover {
+        background-color: $light;
+    }
+
+
     .category-item {
         @include make-col(6);
         border: thin $light solid;
@@ -10,7 +15,7 @@
         padding-top: 42%;
         position: relative;
         background-color: $dark;
-        color:$light;
+        color: $light;
         border-top: none;
         border-left: none;
         &-content {
@@ -22,15 +27,16 @@
             background-color: rgba(0, 0, 0, 0.1);
             text-align: center;
             padding-top: 26%;
-            p{
+            p {
                 color: $light;
-                text-transform: uppercase;   
+                text-transform: uppercase;
                 font-family: $font1;
                 text-decoration: none;
-                margin-top:0.25em;
+                margin-top: 0.25em;
             }
-            i{
+            i {
                 font-size: 2em;
+                color:pink;
             }
         }
     }
