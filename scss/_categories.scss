@@ -21,15 +21,16 @@
             left: 0;
             background-color: rgba(0, 0, 0, 0.1);
             text-align: center;
-            padding-top: 15%;
+            padding-top: 26%;
             p{
                 color: $light;
                 text-transform: uppercase;   
                 font-family: $font1;
                 text-decoration: none;
+                margin-top:0.25em;
             }
             i{
-                font-size: 4em;
+                font-size: 2em;
             }
         }
     }
