@@ -1,0 +1,58 @@
+.layer2{
+	position: absolute;
+	top:0;
+	left:0;
+	padding-top: 1.5em;
+	padding-bottom:2.5em;
+	height:100vh;
+	width:100vw;
+	z-index:2;
+	opacity:0;
+
+	#map{
+		height:100%;
+		position: relative;
+	}
+
+	.filter-tabs{
+		width:100%;
+		height:1.5em;
+		background-color: $light;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content:space-between;
+		align-items:center;
+		list-style-type: none;
+		padding:0;
+	
+		li{
+			flex:0 0 16.666666%;
+			width:100%;
+			text-align: center;
+
+			i{
+				color:$light;
+			}
+		}
+		li:nth-of-type(1){
+			background-color: $pink;
+		}
+		li:nth-of-type(2){
+			background-color: $purple;
+		}
+		li:nth-of-type(3){
+			background-color: #3a87c7;
+		}
+		li:nth-of-type(4){
+			background-color: #35baa8;
+		}
+		li:nth-of-type(5){
+			background-color: #fb5f20;
+		}
+		li:nth-of-type(6){
+			background-color: #f0c459;
+		}
+	}
+}

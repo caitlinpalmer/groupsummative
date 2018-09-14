@@ -14,64 +14,74 @@
 </head>
 
 <body>
-	
-	<div class="header">
-		<div class="header-logo"><i class="fas fa-map-pin fas fa-2x"></i>
+	<div class="app">
+		<div class="header">
+			<div class="header-logo">
+				<img src="assets/images/pinlogo5.png" alt="">
+			</div>
+			
+		</div>
 
+		<div class="layer1" :class="{current: currentLayer=='layer1'}">
+			<div class="search">
+				<form action="">
+					<input type="text" name="search" id="search" placeholder="Search">
+					<i class="fal fa-search"></i>
+				</form>
+			</div>
+			
+			<div class="category-block">
+				<ul class="categories">
+					<li class="category-item">
+						<i class="fal fa-utensils"></i>
+						<p>food & drink</p>
+					</li>
+					<li class="category-item">
+						<i class="fal fa-subway"></i>
+						<p>transport</p>
+					</li>
+					<li class="category-item">
+						<i class="fal fa-bed"></i>
+						<p>accommodation</p>
+					</li>
+					<li class="category-item">
+						<i class="fal fa-shopping-bag"></i>
+						<p>shopping</p>
+					</li>
+					<li class="category-item">
+						<i class="fal fa-money-bill-wave"></i>
+						<p>banks & atms</p>
+					</li>
+					<li class="category-item">
+						<i class="fal fa-ticket"></i>
+						<p>activities</p>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<form action="">
-			<div class="header-search"> <a href="#"><i class="fal fa-search"></i></a>
-				<input type="text" name="search" id="headerSearch" placeholder="Search">
-			</form>
-		</div>
-	</div>
 
-	<div class="categories">
-		<div class="category-item">
-			<div class="category-item-content">
-				<i class="fal fa-bed"></i>
-				<p>accommodation</p>
+		<div class="layer2" :class="{current: currentLayer=='layer2'}">
+			<div id="map">
+				
 			</div>
+			<ul class="filter-tabs">
+					<li><i class="fal fa-utensils"></i></li>
+					<li><i class="fal fa-subway"></i></li>
+					<li><i class="fal fa-bed"></i></li>
+					<li><i class="fal fa-shopping-bag"></i></li>
+					<li><i class="fal fa-money-bill-wave"></i></li>
+					<li><i class="fal fa-ticket"></i></li>
+				</ul>
 		</div>
-		<div class="category-item">
-			<div class="category-item-content">       		
-				<i class="fal fa-subway"></i>
-				<p>transport</p>
-			</div>
-		</div>
-		<div class="category-item">
-			<div class="category-item-content">
-				<i class="fal fa-landmark"></i>
-				<p>attractions</p>
-			</div>
-		</div>
-		<div class="category-item">
-			<div class="category-item-content">
-				<i class="fal fa-money-bill"></i>
-				<p>banks</p>
-			</div>
-		</div>
-		<div class="category-item">
-			<div class="category-item-content">
-				<i class="fal fa-utensils"></i>
-				<p>food and drink</p>
-			</div>
-		</div>
-		<div class="category-item">
-			<div class="category-item-content">
-				<i class="fal fa-star"></i>
-				<p>activities</p>
-			</div>
-		</div>
-	</div>
 
-	<div class="navigation">
-		<ul class="icons">
-			<li><i class="fal fa-search"></i></li>
-			<li><i class="fal fa-map-marker-alt"></i></li>
-			<li><i class="fal fa-heart"></i></li>
-			<li><i class="fal fa-user"></i></li>
-		</ul>
+		<div class="navigation">
+			<ul class="icons">
+				<li><i class="fal fa-search"></i></li>
+				<li><i class="fal fa-map-marker-alt"></i></li>
+				<li><i class="fal fa-heart"></i></li>
+				<li><i class="fal fa-user"></i></li>
+			</ul>
+		</div>
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
