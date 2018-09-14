@@ -1,0 +1,29 @@
+#map{
+	height: 100vh;
+}
+
+// .map-wrapper {
+// 	position: relative;
+// }
+
+.navigation {
+	z-index:1000;
+}
+
+.icons{
+	// border:1px red solid;
+	li{
+		// border:1px green solid;
+		display: block;
+		width: 1em;
+	}
+}
+
+.map-search {
+	background-color: black;
+	z-index: 1000;
+}
+
+.maphtml {
+	background-color: white;
+}
