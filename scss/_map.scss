@@ -1,12 +1,12 @@
 #map{
-	height: 500px;
+	height: 100vh;
+	position: relative;
 }
-
 // .map-wrapper {
 // 	position: relative;
 // }
 
-.navigation {
+.navi-fixed {
 	z-index:1000;
 }
 
@@ -19,9 +19,13 @@
 	}
 }
 
-.map-search {
-	background-color: black;
+form {
 	z-index: 1000;
+	background-color: transparent;
+	position: absolute;
+	top:1%;
+	left: 12%;
+	width:300px;
 }
 
 .maphtml {
