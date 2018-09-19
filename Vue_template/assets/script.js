@@ -29,7 +29,7 @@ let app = new Vue({
     methods: {
         loadVenues: function() {
             //ajax request
-            let urlProjects = 'https://api.foursquare.com/v2/venues/explore' + key + '&ll=-36.8446152873055,174.76662397384644&section='+this.keyword;
+            let urlProjects = 'https://api.foursquare.com/v2/venues/explore' + key + '&ll=-36.8446152873055,174.76662397384644&section=' + this.keyword;
             $.ajax({
                 url: urlProjects,
                 dataType: 'jsonp',
@@ -43,13 +43,13 @@ let app = new Vue({
                             latlng: { lat: item.venue.location.lat, lng: item.venue.location.lng }
                         }
                     });
-                    //assign venues to vue data
+                    //assign venues to vue data                                                        
                     app.venues = venues;
                 }
             });
         }
     },
-    mounted:function(){
-    	this.loadVenues()
+    mounted: function() {
+        this.loadVenues()
     }
 });
