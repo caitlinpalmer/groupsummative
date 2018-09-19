@@ -1,6 +1,6 @@
 const version = '?v=20170901';
-const clientid = '&client_id=V411NRDVQFIXJDGXGIRRE4X3UEW25UNF0AV30STXIE1B3U1N';
-const clientSecret = '&client_secret=SDYHGPFRXFDHHB5JKV5I0R0YXEZYNF1XZQZHJBTBWO3TM4Z2';
+const clientid = '&client_id=ZGAIBFRENOSMWZLH5RAWQNEYSXBKAR54ULLLJ0TENQZAV0N3';
+const clientSecret = '&client_secret=EGNHXWGDWAGNDRXSC441LB10S4HVF0F2ZS13MGHBQG2QWO4U';
 const key = version + clientid + clientSecret;
 
 var map;
@@ -16,19 +16,39 @@ var categories = {
 
 
 var icons = {
-	food: 'assets/images/pinkdot.svg',
-	transport: 'assets/images/purpledot.svg',
-	accommodation: 'assets/images/bluedot.svg',
-	shopping: 'assets/images/greendot.svg',
-	banks: 'assets/images/orangedot.svg',
-	activities: 'assets/images/yellowdot.svg'
+	food: 'assets/images/purpledot.svg',
+	transport: 'assets/images/bluedot.svg',
+	accommodation: 'assets/images/lightbluedot.svg',
+	shopping: 'assets/images/orangedot.svg',
+	banks: 'assets/images/yellowdot.svg',
+	activities: 'assets/images/pinkdot.svg'
 }
+
+
+var layers = {
+	food: '',
+	transport: '',
+	accommodation: '',
+	shopping: '',
+	banks: '',
+	activities: ''
+}
+
 
 $(function(){
 	//map
 	let center = [-36.848953,174.762573];
 	map = L.map('map').setView(center,15);
 	L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FpdGxpbnBhbG1lciIsImEiOiJjamtrZXlsaW4xcHE5M3FtbDEwbzBqdG92In0.RY6_Y65ouMFFFrT6B6Mvww').addTo(map);
+
+
+	layers.food = L.layerGroup().addTo(map);
+	layers.transport = L.layerGroup().addTo(map);
+	layers.accommodation = L.layerGroup().addTo(map);
+	layers.shopping = L.layerGroup().addTo(map);
+	layers.banks = L.layerGroup().addTo(map);
+	layers.activities = L.layerGroup().addTo(map);
+
 
 	//switching of layers
 	$('.fa-search').on('click',function(){
@@ -39,19 +59,33 @@ $(function(){
 	});
 
 	let ll = '-36.848953,174.762573';
-	//venues - foursquare api
-	
-	getVenues(ll,categories.food,icons.food);
-	getVenues(ll,categories.transport,icons.transport);
-	getVenues(ll,categories.accommodation,icons.accommodation);
-	getVenues(ll,categories.shopping,icons.shopping);
-	getVenues(ll,categories.banks,icons.banks);
-	getVenues(ll,categories.activities,icons.activities);
+
+	//get venues - foursquare api
+	 getAllVenues(ll);
+
+	//filter categories
+	$('[data-filter]').on('click',function(){
+		app.currentLayer='layer2';
+
+		var filter = $(this).data('filter');
+		
+		if($(this).data('selected') == 'no'){
+			hideAllLayers()
+			map.addLayer(layers[filter]);
+			$(this).data('selected','yes');
+		}else{
+			showAllLayers();
+			$('.filter-tabs i').data('selected','no'); 
+		}
+		
+	});
+
+
 
 
 });
 
-function getVenues(location,category,icon){
+function getVenues(location,category,icon,layer){
 
 	let placesUrl = 'https://api.foursquare.com/v2/venues/search'+key+'&ll='+location+'&categoryId='+category;
 
@@ -61,7 +95,7 @@ function getVenues(location,category,icon){
 		success:function(res){
 			var data = res.response.venues;
 
-			console.log(data);
+			// console.log(data);
 
 			var venues = _(data).map(function(item){
 				return {
@@ -71,7 +105,7 @@ function getVenues(location,category,icon){
 				};
 			});
 
-			console.log(venues);
+			// console.log(venues);
 
 			_(venues).each(function(venue){
 
@@ -79,7 +113,7 @@ function getVenues(location,category,icon){
 					iconUrl:icon,
 					iconSize:[30,30]
 				});
-				let marker = L.marker(venue.latlng,{icon:placeIcon}).addTo(map);
+				let marker = L.marker(venue.latlng,{icon:placeIcon}).addTo(layer);
 
 				marker.venueid = venue.venueid;
 
@@ -91,10 +125,8 @@ function getVenues(location,category,icon){
 						url:venueUrl,
 						dataType:'jsonp',
 						success:function(res){
-							console.log(res);
+							// console.log(res);
 							app.currentVenue = res.response.venue;
-							// $('.modal-title').text(venue.name);
-							// $('.modal-body').empty();
 
 							$('.modal').modal('show');
 						}
@@ -107,6 +139,32 @@ function getVenues(location,category,icon){
 
 }
 
+function getAllVenues(location){
+	getVenues(location,categories.food,icons.food,layers.food);
+	getVenues(location,categories.transport,icons.transport,layers.transport);
+	getVenues(location,categories.accommodation,icons.accommodation,layers.accommodation);
+	getVenues(location,categories.shopping,icons.shopping,layers.shopping);
+	getVenues(location,categories.banks,icons.banks,layers.banks);
+	getVenues(location,categories.activities,icons.activities,layers.activities);
+}
+
+function hideAllLayers(){
+	map.removeLayer(layers.food);
+	map.removeLayer(layers.transport);
+	map.removeLayer(layers.accommodation);
+	map.removeLayer(layers.shopping);
+	map.removeLayer(layers.banks);
+	map.removeLayer(layers.activities);
+}
+
+function showAllLayers(){
+	map.addLayer(layers.food);
+	map.addLayer(layers.transport);
+	map.addLayer(layers.accommodation);
+	map.addLayer(layers.shopping);
+	map.addLayer(layers.banks);
+	map.addLayer(layers.activities);
+}
 
 
 ///--------

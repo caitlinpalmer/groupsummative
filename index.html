@@ -17,7 +17,7 @@
 	<div class="app">
 		<div class="header">
 			<div class="header-logo">
-				<img src="assets/images/pinlogo7.png" alt="">
+				<img src="assets/images/pinlogo.png" alt="">
 			</div>
 			
 		</div>
@@ -33,27 +33,27 @@
 			<div class="category-block">
 				<ul class="categories">
 					<li class="category-item">
-						<i class="fal fa-utensils"></i>
+						<i class="fal fa-utensils" data-filter="food" data-selected="no"></i>
 						<p>food & drink</p>
 					</li>
 					<li class="category-item">
-						<i class="fal fa-subway"></i>
+						<i class="fal fa-subway" data-filter="transport" data-selected="no"></i>
 						<p>transport</p>
 					</li>
 					<li class="category-item">
-						<i class="fal fa-bed"></i>
+						<i class="fal fa-bed" data-filter="accommodation" data-selected="no"></i>
 						<p>accommodation</p>
 					</li>
 					<li class="category-item">
-						<i class="fal fa-shopping-bag"></i>
+						<i class="fal fa-shopping-bag" data-filter="shopping" data-selected="no"></i>
 						<p>shopping</p>
 					</li>
 					<li class="category-item">
-						<i class="fal fa-money-bill-wave"></i>
+						<i class="fal fa-money-bill-wave" data-filter="banks" data-selected="no"></i>
 						<p>banks & atms</p>
 					</li>
 					<li class="category-item">
-						<i class="fal fa-ticket"></i>
+						<i class="fal fa-ticket" data-filter="activities" data-selected="no"></i>
 						<p>activities</p>
 					</li>
 				</ul>
@@ -65,30 +65,30 @@
 				
 			</div>
 			<ul class="filter-tabs">
-				<li><i class="fal fa-utensils"></i></li>
-				<li><i class="fal fa-subway"></i></li>
-				<li><i class="fal fa-bed"></i></li>
-				<li><i class="fal fa-shopping-bag"></i></li>
-				<li><i class="fal fa-money-bill-wave"></i></li>
-				<li><i class="fal fa-ticket"></i></li>
+				<li><i class="fal fa-utensils" data-filter="food" data-selected="no"></i></li>
+				<li><i class="fal fa-subway" data-filter="transport" data-selected="no"></i></li>
+				<li><i class="fal fa-bed" data-filter="accommodation" data-selected="no"></i></li>
+				<li><i class="fal fa-shopping-bag" data-filter="shopping" data-selected="no"></i></li>
+				<li><i class="fal fa-money-bill-wave" data-filter="banks" data-selected="no"></i></li>
+				<li><i class="fal fa-ticket" data-filter="activities" data-selected="no"></i></li>
 			</ul>
 			<div class="modal" id="venueModal" tabindex="-1" role="dialog">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">{{currentVenue.name}}</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      	<p v-if="currentVenue.location">{{currentVenue.location.formattedAddress.join(', ')}}</p>
-			      </div>
-			      <div class="modal-footer">
-			       
-			      </div>
-			    </div>
-			  </div>
+			 	<div class="modal-dialog" role="document">
+			    	<div class="modal-content">
+			      		<div class="modal-header">
+			        		<h5 class="modal-title">{{currentVenue.name}}</h5>
+			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          			<span aria-hidden="true">&times;</span>
+			        		</button>
+			      		</div>
+			      		<div class="modal-body">
+			      			<p v-if="currentVenue.location">{{currentVenue.location.formattedAddress.join(', ')}}</p>
+			      		</div>
+			      		<div class="modal-footer">
+			       			<button>more</button>
+			      		</div>
+			    	</div>
+			 	</div>
 			</div>
 		</div>
 

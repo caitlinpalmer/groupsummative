@@ -71,7 +71,7 @@ body{
 	            padding-bottom:2em;
 	            text-align: center;
 	            list-style-type: none;
-	            
+
 	            p{
 	                color: $dark;
 	                text-transform: uppercase;   
@@ -84,7 +84,25 @@ body{
 
 	            i{
 	               font-size: 2.5em;
-	               color:$pink;
+	            }
+
+	            .fa-utensils{
+	            	color:$purple;
+	            }
+	            .fa-subway{
+	            	color:$blue;
+	            }
+	            .fa-bed{
+	            	color:$lightblue;
+	            }
+	            .fa-shopping-bag{
+	            	color:$orange;
+	            }
+	            .fa-money-bill-wave{
+	            	color:$yellow;
+	            }
+	            .fa-ticket{
+	            	color:$pink;
 	            }
 	        }
 	    }
