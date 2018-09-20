@@ -92,6 +92,31 @@
 			</div>
 		</div>
 
+		<div class="layer3" v-if="currentVenue.name" :class="{current: currentLayer=='layer3'}">
+			<div class="back-arrow">
+				<i class="fal fa-arrow-left"></i>
+			</div>
+			<div class="venue-title">
+				<div class="text">
+					<h1>{{currentVenue.name}}</h1>
+					<h2>{{currentVenue.categories[0].name}} &#183; <i class="far fa-walking"></i> 6 min</h2>
+					<h2>{{currentVenue.likes.summary}}</h2>
+				</div>
+				<div class="direction">
+					<i class="fal fa-directions" :data-lat="currentVenue.location.lat" :data-lng="currentVenue.location.lng" @click="showDirections"></i>
+					<h2>directions</h2>
+				</div>
+			</div>
+			<div class="venue-info">
+				<div class="description">
+					<p>{{}}</p>
+				</div>
+				<div class="address">
+					
+				</div>
+			</div>
+		</div>
+
 		<div class="navigation">
 			<ul class="icons">
 				<li><i class="fal fa-search"></i></li>
@@ -110,6 +135,7 @@
 	<script src="assets/underscore.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="assets/script.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUR4s8FmdvbyscmmaqZeDc37WApsA2WcI&callback=initMap"></script>
 </body>
 
 </html>

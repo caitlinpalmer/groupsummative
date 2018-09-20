@@ -1,9 +1,11 @@
 const version = '?v=20170901';
-const clientid = '&client_id=ZGAIBFRENOSMWZLH5RAWQNEYSXBKAR54ULLLJ0TENQZAV0N3';
-const clientSecret = '&client_secret=EGNHXWGDWAGNDRXSC441LB10S4HVF0F2ZS13MGHBQG2QWO4U';
+const clientid = '&client_id=T51NFIX5BC4UD3VYA5A4DOMOWNUSYUYZ0FAXEKUKALSP1HS0';
+const clientSecret = '&client_secret=JGRBTMWO5PWR1PSQ4LAM5LIZFQYPFOSUBRVXGYIM4PN2G2WO';
 const key = version + clientid + clientSecret;
 
 var map;
+var directionsService;
+var directionsLayerGroup;
 
 var categories = {
 	food: '4d4b7105d754a06374d81259',
@@ -57,6 +59,9 @@ $(function(){
 	$('.fa-map-marker-alt').on('click',function(){
 		app.currentLayer='layer2';
 	});
+	$('.modal-footer button').on('click',function(){
+		app.currentLayer='layer3';
+	});
 
 	let ll = '-36.848953,174.762573';
 
@@ -80,6 +85,54 @@ $(function(){
 		
 	});
 
+	//google map directions
+
+	directionsLayerGroup = L.layerGroup().addTo(map);
+
+	$('#map').on('click','.direction',function(e){
+		e.preventDefault();
+
+
+		if (navigator.geolocation) {
+
+			navigator.geolocation.getCurrentPosition(position=>{
+				var myLocation = {
+					lat:position.coords.latitude,
+					lng:position.coords.longitude
+				};
+
+				//create a request for directions
+
+				var destinationLatLng = {
+					lat: $(this).data('lat'),
+					lng: $(this).data('lng'),
+				};
+				var request = {
+			          origin: myLocation,
+			          destination: destinationLatLng,
+			          travelMode: 'WALKING'
+			        };
+				//ask directionsService to fulfill your request
+				directionsService.route(request,function(response,status){
+
+					directionsLayerGroup.clearLayers();
+
+					var path = response.routes["0"].overview_path;
+
+					var polyline = _(path).map(function(item){
+						return {lat:item.lat(),lng:item.lng()};
+					});
+
+					L.polyline(polyline,{
+						color:'tomato',
+						weight:5
+					}).addTo(directionsLayerGroup);
+					
+				});
+			});
+		}
+	});	
+
 
 
 
@@ -95,7 +148,7 @@ function getVenues(location,category,icon,layer){
 		success:function(res){
 			var data = res.response.venues;
 
-			// console.log(data);
+			console.log(data);
 
 			var venues = _(data).map(function(item){
 				return {
@@ -125,7 +178,7 @@ function getVenues(location,category,icon,layer){
 						url:venueUrl,
 						dataType:'jsonp',
 						success:function(res){
-							// console.log(res);
+							console.log(res);
 							app.currentVenue = res.response.venue;
 
 							$('.modal').modal('show');
@@ -172,7 +225,65 @@ var app = new Vue({
 	el:'.app',
 	data:{
 		currentLayer:'layer1',
-		currentVenue:{}
+		currentVenue:{
+		}
 	},
-	methods:{},
+	methods:{
+		showDirections:function(event){
+
+			console.log(event);
+			if (navigator.geolocation) {
+
+				navigator.geolocation.getCurrentPosition(position=>{
+					var myLocation = {
+						lat:position.coords.latitude,
+						lng:position.coords.longitude
+					};
+
+					//create a request for directions
+
+					var target = event.target;
+
+					var destinationLatLng = {
+						lat: $(target).data('lat'),
+						lng: $(target).data('lng'),
+					};
+
+
+					var request = {
+				          origin: myLocation,
+				          destination: destinationLatLng,
+				          travelMode: 'WALKING'
+				        };
+					//ask directionsService to fulfill your request
+					directionsService.route(request,function(response,status){
+
+						directionsLayerGroup.clearLayers();
+
+						var path = response.routes["0"].overview_path;
+
+						var polyline = _(path).map(function(item){
+							return {lat:item.lat(),lng:item.lng()};
+						});
+
+						console.log(polyline);
+
+						L.polyline(polyline,{
+							color:'tomato',
+							weight:5
+						}).addTo(directionsLayerGroup);
+						
+					});
+				});
+			}
+			this.currentLayer = 'layer2';
+		}
+	},
 });
+
+//google map directions
+function initMap(){
+	console.log('init')
+	directionsService = new google.maps.DirectionsService;
+	
+}
