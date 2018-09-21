@@ -24,92 +24,87 @@ $(function(){
 			dataType:'jsonp',
 			success:function(res){
 				var data = res.response.groups["0"].items;
-			// console.log(data);
+				// console.log(data);
 
-			var venues = _(data).map(function(item){
-				// console.log(item);
+				var venues = _(data).map(function(item){
+					// console.log(item);
 
-				return {
-					latlng:{lat:item.venue.location.lat,lng:item.venue.location.lng},
-					name:item.venue.name,
-					venueid:item.venue.id,
-					category: item.venue.categories[0].name,
-				}
-			});
+					return {
+						latlng:{lat:item.venue.location.lat,lng:item.venue.location.lng},
+						name:item.venue.name,
+						venueid:item.venue.id,
+						category: item.venue.categories[0].name,
+					}
+				});
+				
+
+				_(venues).each(function(venue){
+
+					// console.log(venue.category)
+
+					if((venue.category == 'Café') || (venue.category == 'Coffee Shop')){
+						iconName = 'assets/cafe.svg'
+					}
+
+					else if(restaurantArray.indexOf(venue.category) != -1){
+						iconName = 'assets/restaurant.svg'
+					}
+
+					else{
+						iconName = 'assets/defaultIcon.svg'
+					}
+
+					let venueIcon = L.icon({
+						iconUrl: iconName,
+						iconSize:[30,30],
+					});
+					// console.log(venue);
+					let marker = L.marker(venue.latlng,{icon:venueIcon}).addTo(map);
+
+
+					marker.venueid = venue.venueid;
+
+
+					//show popup
+
+					marker.bindPopup('<h6 class="popup-name">' + venue.name + '</h6><br><p class="popup-category">' + venue.category + '</p><br><button type="button" data-venueid="'+venue.venueid+'" class="btn btn-info showModalButton">See more</button>');
+
+
+
+					// show modal
+
+					
+				});
+			}
+		});
+
+
+
+		$('#map').on('click','.showModalButton',function(){
+			var venueUrl = 'https://api.foursquare.com/v2/venues/'+$(this).data('venueid')+key;
 			
+			$.ajax({
+				url:venueUrl,
+				dataType:'jsonp',
+				success:function(res){
+					var venue = res.response.venue;
 
-			_(venues).each(function(venue){
-
-				console.log(venue.category)
-
-				if((venue.category == 'Café') || (venue.category == 'Coffee Shop')){
-					iconName = 'assets/cafe.svg'
-				}
-
-				else if(restaurantArray.indexOf(venue.category) != -1){
-					iconName = 'assets/restaurant.svg'
-				}
-
-				else{
-					iconName = 'assets/defaultIcon.svg'
-				}
-
-				let venueIcon = L.icon({
-					iconUrl: iconName,
-					iconSize:[30,30],
-				});
-				// console.log(venues);
-				let marker = L.marker(venue.latlng,{icon:venueIcon}).addTo(map);
-
-
-				marker.venueid = venue.venueid;
-
-				//show popup
-
-				$('.showModalButton').on('click',function(){
-					var venueUrl = 'https://api.foursquare.com/v2/venues/'+this.venueid+key;
-
-					$.ajax({
-						url:venueUrl,
-						dataType:'jsonp',
-						success:function(res){
-							var venue = res.response.venue;
-
-							marker.bindPopup('<h3>' + venue.name + '</h3><br>' + venue.categories[0].name + '<br><button type="button" class="showModalButton"')
-						}
-					});
-				});	
-
-
-
-				//show modal
-
-				$('.showModalButton').on('click',function(){
-					var venueUrl = 'https://api.foursquare.com/v2/venues/'+this.venueid+key;
+					// console.log(venue);
 					
-					$.ajax({
-						url:venueUrl,
-						dataType:'jsonp',
-						success:function(res){
-							var venue = res.response.venue;
+					$('.modal-title').text(venue.name);
 
-							console.log(venue);
-							
-							$('.modal-title').text(venue.name);
+					var photos = venue.bestPhoto;
+					var source = photos.prefix+'100x100'+photos.suffix;
+					$('.modal-body').empty();
+					$('<img src="'+source+'">').appendTo('.modal-body');
 
-							var photos = venue.bestPhoto;
-							var source = photos.prefix+'100x100'+photos.suffix;
-							$('.modal-body').empty();
-							$('<img src="'+source+'">').appendTo('.modal-body');
+					$('#venueModal').modal('show');
+					console.log($('#venueModal'));
 
-							$('#venueModal').modal('show');
-
-						}	
-					});
-
-					
-				});
+				}	
 			});
+
+			
 		});
 	}
 
