@@ -1,11 +1,12 @@
 const version = '?v=20170901';
-const clientid = '&client_id=T51NFIX5BC4UD3VYA5A4DOMOWNUSYUYZ0FAXEKUKALSP1HS0';
-const clientSecret = '&client_secret=JGRBTMWO5PWR1PSQ4LAM5LIZFQYPFOSUBRVXGYIM4PN2G2WO';
+const clientid = '&client_id=0JP2PK1FZJNWPMRXAH1NUCJZS0BFNKLU2KJFXQPU2GYOZXO0';
+const clientSecret = '&client_secret=EYZLCGCOKR3U5KJKBLUCV2FWOBTZ5SNNQSI2RA0RQM0KYPHA';
 const key = version + clientid + clientSecret;
 
 var map;
 var directionsService;
 var directionsLayerGroup;
+let ll;
 
 var categories = {
 	food: '4d4b7105d754a06374d81259',
@@ -23,7 +24,8 @@ var icons = {
 	accommodation: 'assets/images/lightbluedot.svg',
 	shopping: 'assets/images/orangedot.svg',
 	banks: 'assets/images/yellowdot.svg',
-	activities: 'assets/images/pinkdot.svg'
+	activities: 'assets/images/pinkdot.svg',
+	search: 'assets/images/pinkdot.svg'
 }
 
 
@@ -33,7 +35,8 @@ var layers = {
 	accommodation: '',
 	shopping: '',
 	banks: '',
-	activities: ''
+	activities: '',
+	search: ''
 }
 
 
@@ -50,6 +53,7 @@ $(function(){
 	layers.shopping = L.layerGroup().addTo(map);
 	layers.banks = L.layerGroup().addTo(map);
 	layers.activities = L.layerGroup().addTo(map);
+	layers.search = L.layerGroup().addTo(map);
 
 
 	//switching of layers
@@ -63,7 +67,15 @@ $(function(){
 		app.currentLayer='layer3';
 	});
 
-	let ll = '-36.848953,174.762573';
+	//change active state in navigation
+	$('.icons li i').on('click',function(){
+		$('.icons li i').removeClass('active');
+		$(this).addClass('active');
+	});
+
+	//longitude and latitude
+
+	ll = '-36.848953,174.762573';
 
 	//get venues - foursquare api
 	 getAllVenues(ll);
@@ -91,46 +103,6 @@ $(function(){
 
 	$('#map').on('click','.direction',function(e){
 		e.preventDefault();
-
-
-		if (navigator.geolocation) {
-
-			navigator.geolocation.getCurrentPosition(position=>{
-				var myLocation = {
-					lat:position.coords.latitude,
-					lng:position.coords.longitude
-				};
-
-				//create a request for directions
-
-				var destinationLatLng = {
-					lat: $(this).data('lat'),
-					lng: $(this).data('lng'),
-				};
-				var request = {
-			          origin: myLocation,
-			          destination: destinationLatLng,
-			          travelMode: 'WALKING'
-			        };
-				//ask directionsService to fulfill your request
-				directionsService.route(request,function(response,status){
-
-					directionsLayerGroup.clearLayers();
-
-					var path = response.routes["0"].overview_path;
-
-					var polyline = _(path).map(function(item){
-						return {lat:item.lat(),lng:item.lng()};
-					});
-
-					L.polyline(polyline,{
-						color:'tomato',
-						weight:5
-					}).addTo(directionsLayerGroup);
-					
-				});
-			});
-		}
 	});	
 
 
@@ -184,6 +156,87 @@ function getVenues(location,category,icon,layer){
 							$('.modal').modal('show');
 						}
 					});	
+
+					//url test
+					var venueLinksUrl = 	'https://api.foursquare.com/v2/venues/'+
+					this.venueid+'/links'+key;
+					
+					$.ajax({
+						url:venueLinksUrl,
+						dataType:'jsonp',
+						success:function(res){
+							console.log(res);
+							
+						}
+					});	
+				});
+			});
+		}
+	});
+
+
+}
+
+function searchVenuesFunction(location,keyword,icon,layer){
+
+	let placesUrl = 'https://api.foursquare.com/v2/venues/search'+key+'&ll='+location+'&query='+keyword;
+	console.log(placesUrl);
+	$.ajax({
+		url:placesUrl,
+		dataType:'jsonp',
+		success:function(res){
+			var data = res.response.venues;
+
+			console.log('hi');
+			console.log(data);
+
+			var venues = _(data).map(function(item){
+				return {
+					latlng:{lat:item.location.lat,lng:item.location.lng},
+					name:item.name,
+					venueid:item.id
+				};
+			});
+
+			// console.log(venues);
+
+			_(venues).each(function(venue){
+
+				let placeIcon = L.icon({
+					iconUrl:icon,
+					iconSize:[30,30]
+				});
+				let marker = L.marker(venue.latlng,{icon:placeIcon}).addTo(layer);
+
+				marker.venueid = venue.venueid;
+
+				marker.on('click',function(){
+					var venueUrl = 	'https://api.foursquare.com/v2/venues/'+
+					this.venueid+key;
+					
+					$.ajax({
+						url:venueUrl,
+						dataType:'jsonp',
+						success:function(res){
+							console.log(res);
+							app.currentVenue = res.response.venue;
+
+							$('.modal').modal('show');
+						}
+					});	
+
+					//url test
+					var venueLinksUrl = 	'https://api.foursquare.com/v2/venues/'+
+					this.venueid+'/links'+key;
+					
+					$.ajax({
+						url:venueLinksUrl,
+						dataType:'jsonp',
+						success:function(res){
+							console.log(res);
+							
+						}
+					});	
 				});
 			});
 		}
@@ -226,7 +279,8 @@ var app = new Vue({
 	data:{
 		currentLayer:'layer1',
 		currentVenue:{
-		}
+		},
+		keyword:''
 	},
 	methods:{
 		showDirections:function(event){
@@ -269,15 +323,23 @@ var app = new Vue({
 						console.log(polyline);
 
 						L.polyline(polyline,{
-							color:'tomato',
-							weight:5
+							color:'#d03960',
+							weight:3
 						}).addTo(directionsLayerGroup);
 						
 					});
 				});
 			}
 			this.currentLayer = 'layer2';
+		},
+		searchVenues:function(){
+			console.log(this.keyword);
+			layers.search.clearLayers();
+			hideAllLayers();
+			searchVenuesFunction(ll,this.keyword,icons.search,layers.search);
+			this.currentLayer = 'layer2';
 		}
+
 	},
 });
 

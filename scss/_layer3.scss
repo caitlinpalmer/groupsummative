@@ -12,6 +12,7 @@
 		margin: 1em;
 		i{
 			font-size:1.5em;
+			color:$dark;
 		}
 	}
 
@@ -65,10 +66,102 @@
 			h2{
 				font-family: $font1;
 				font-size:0.7em;
-				// font-weight:600;
 				text-transform: uppercase;
 				letter-spacing: 2px;
 				color:$pink;
+			}
+		}
+		
+	}
+
+	.venue-info{
+		margin:0 1em;
+		border-width: 90%;
+
+		.address{
+			margin-top:2em;
+			display:flex;
+			align-items:center;
+			i{
+				color:$blue;
+				padding-right:1em;
+
+			}
+			p{
+				color:$dark;
+				font-family: $font2;
+				font-size:0.7em;
+				text-decoration: none;
+				margin:0 0;			
+			}
+		}
+		.opening-hours{
+			margin-top:1.5em;
+			display:flex;
+			align-items:center;
+			i{
+				color:$orange;
+				padding-right:1em;
+
+			}
+			p{
+				color:$dark;
+				font-family: $font2;
+				font-size:0.7em;
+				text-decoration: none;
+				margin:0 0;			
+			}
+		}
+		.phone{
+			margin-top:1.5em;
+			display:flex;
+			align-items:center;
+			i{
+				color:$purple;
+				padding-right:1em;
+
+			}
+			p{
+				color:$dark;
+				font-family: $font2;
+				font-size:0.7em;
+				text-decoration: none;
+				margin:0 0;			
+			}
+		}
+		.website{
+			margin-top:1.5em;
+			display:flex;
+			align-items:center;
+			i{
+				color:$pink;
+				padding-right:1em;
+
+			}
+			a{
+				display: block;
+				color:$dark !important;
+				font-family: $font2;
+				font-size:0.7em;
+				text-decoration: underline;
+			}
+		}
+		.save{
+			margin-top: 3em;
+			text-align:center;
+			
+			a{
+				padding:1em;
+				color:$light;
+				font-family: $font1;
+				text-transform: uppercase;
+				letter-spacing:2px;
+				font-size:0.8em;
+				background: $pink;
+				
+				i{
+					padding-right:0.5em;
+				}
 			}
 		}
 		
