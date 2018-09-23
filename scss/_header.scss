@@ -1,21 +1,97 @@
 .header {
-    height: 124px;
-    background-color: $dark;
+    height: 100px;
+    background-color: white;
     width: 100%;
+    box-shadow: 5px 2px 5px grey;
+    position: relative;
+}
+
+.bars {
+    position: absolute;
+    top: 25px;
+    right: .5em; // margin: .5em;
+    font-size: 35px;
+    color: $secondary;
 }
 
 .header {
     &-logo {
-        height: 55px;
-        width: 24px;
-        margin: auto; // border: red 1px solid;
+        height: 55px; // width: 24px;
+        // margin: auto; // border: red 1px solid;
         i {
-            color: pink;
-            padding-top: 13px;
-            font-size: 40px
+            color: $secondary;
+            margin-top: 28px;
+            font-size: 40px;
+            margin-left: 0.6em;
         }
     }
 }
+
+.bar-nav nav ul li {
+    // float: right;
+    list-style: none;
+    color: black;
+    height: 50px;
+    width:100%;
+    a {
+        height: 50px;
+        display:block;
+        line-height: 50px;
+        // padding: 0 20px;
+        color: black;
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+.bar-nav nav.active {
+    left:0;
+}
+
+.bar-nav nav {
+    padding:0;
+    ul {
+        padding:0;
+    }
+}
+
+.bar-nav {
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    width:100%;
+    padding-bottom:270px;
+    margin-top:5px;
+    right: 100%;
+}
+
+.slideOut {
+    right:0;
+    transition:1s;
+}
+
+.slideIn {
+    transition:1s;
+    right:100%;
+}
+
+.bar-nav nav ul li a:hover,.bar-nav nav ul li a:active {
+    color:pink;
+    background:blue;
+}
+
+.menu-toggle {
+    color: $secondary;
+    float:right;
+    line-height:50px;
+}
+
+
+
+#index {
+    background-color: #fff;
+}
+
 
 .header-search input[type=text]:focus {
     outline: none;
@@ -38,6 +114,7 @@
     border-radius: 3px;
     width: 90%;
     padding: 3px;
+    margin-bottom: 1em;
     a>i {
         font-size: 27px;
         margin: 2px;

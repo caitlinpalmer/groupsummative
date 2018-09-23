@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  background-color: gray
+  background-color: $dark;
 }
 
 .text-center {
@@ -50,7 +50,7 @@ label{
   color: white;
 }
 a{
-  color: white !important; 
+  color: blue; 
 }
 .fab{
   color: white;

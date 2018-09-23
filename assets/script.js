@@ -20,6 +20,9 @@ $(function() {
         fill: false
     }).addTo(map);
 
+
+    //API for Map Venues
+
 });
 
 //API for Map Venues
@@ -33,7 +36,7 @@ let app = new Vue({
     methods: {
         loadVenues: function() {
             //ajax request
-            let urlProjects = 'https://api.foursquare.com/v2/venues/explore' + key + '&ll=-36.8446152873055,174.76662397384644&section='+this.keyword;
+            let urlProjects = 'https://api.foursquare.com/v2/venues/explore' + key + '&ll=-36.8446152873055,174.76662397384644&section=' + this.keyword;
             $.ajax({
                 url: urlProjects,
                 dataType: 'jsonp',
@@ -51,7 +54,7 @@ let app = new Vue({
                     app.venues = venues;
                     //adding venues on to map
                     markersGroup.clearLayers();
-                    _(venues).each(function(venue){
+                    _(venues).each(function(venue) {
                         var marker = L.marker(venue.latlng).addTo(markersGroup);
                     });
 
@@ -59,10 +62,12 @@ let app = new Vue({
             });
         }
     },
-    mounted:function(){
+    mounted: function() {
         this.loadVenues()
     }
 });
+
+
 
 $('.fa-search').click(function() {
     // $(this).toggleClass('selected');
@@ -72,31 +77,8 @@ $('.fa-search').click(function() {
 
 //Index Navigation
 
-$(function() {
-
-    // Open and close nav on mobile
-    $('.bars').on('click', function(e) {
-
-        var navData = $('.navigation').data('nav');
-
-        e.stopPropagation();
-
-        if (navData == 'close') {
-            $('.navigation').addClass('nav-open')
-                .data('nav', 'open')
-
-            $('.bars>i').first().removeClass('fas fa-bars')
-                .addClass('fas fa-times');
-
-            $('.heading,.sub-heading').addClass('text-hide');
-        } else {
-            $('.navigation').removeClass('nav-open')
-                .data('nav', 'close');
-            $('.bars>i').removeClass('fas fa-times')
-                .addClass('fas fa-bars');
-
-            $('.heading,.sub-heading').removeClass('text-hide');
-        }
+$(document).ready(function(){
+    $('.menu-toggle').click(function(){
+        $('.bar-nav').toggleClass('slideOut slide In')
     });
-
-});
+})
