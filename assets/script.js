@@ -56,23 +56,6 @@ $(function(){
 	layers.search = L.layerGroup().addTo(map);
 
 
-	//switching of layers
-	$('.fa-search').on('click',function(){
-		app.currentLayer='layer1';
-	});
-	$('.fa-map-marker-alt').on('click',function(){
-		app.currentLayer='layer2';
-	});
-	$('.modal-footer button').on('click',function(){
-		app.currentLayer='layer3';
-	});
-
-	//change active state in navigation
-	$('.icons li i').on('click',function(){
-		$('.icons li i').removeClass('active');
-		$(this).addClass('active');
-	});
-
 	//longitude and latitude
 
 	ll = '-36.848953,174.762573';
@@ -187,7 +170,6 @@ function searchVenuesFunction(location,keyword,icon,layer){
 		success:function(res){
 			var data = res.response.venues;
 
-			console.log('hi');
 			console.log(data);
 
 			var venues = _(data).map(function(item){
@@ -341,6 +323,33 @@ var app = new Vue({
 		}
 
 	},
+	mounted:function(){
+
+		//switching of layers
+		$('.fa-search').on('click',function(){
+			app.currentLayer='layer1';
+		});
+		$('.fa-map-marker-alt').on('click',function(){
+			app.currentLayer='layer2';
+		});
+		$('.modal-footer button').on('click',function(){
+			app.currentLayer='layer3';
+		});
+		$('.back-arrow').on('click',function(){
+			console.log('hi');
+			app.currentLayer='layer2';
+		});
+		$('.fa-heart').on('click',function(){
+			app.currentLayer='layer4';
+		});
+		$('.fa-user').on('click',function(){
+			app.currentLayer='layer5';
+		});
+		$('.to-layer5').on('click',function(){
+			app.currentLayer='layer5';
+		});
+
+	}
 });
 
 //google map directions

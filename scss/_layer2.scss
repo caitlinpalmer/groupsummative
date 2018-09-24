@@ -95,6 +95,13 @@
 			.modal-body{
 				padding:0;
 				padding-top: 0.5em;
+				h2{
+					font-family: $font1;
+					font-size:0.7em;
+					text-transform: uppercase;
+					letter-spacing: 2px;
+					color:$dark;
+				}
 				p{
 					font-family: $font2;
 					font-size:0.8em;
@@ -117,7 +124,7 @@
 					width:80px;
 					color:$light;
 					letter-spacing:1px;
-					background: linear-gradient(to bottom right, $pink, $orange);
+					background-color:$pink;
 					outline:none;
 				}
 			}			

@@ -1,0 +1,56 @@
+.layer4{
+	position: absolute;
+	top:0;
+	left:0;
+	height:100vh;
+	width:100vw;
+	z-index:4;
+	opacity:0;
+	
+	.text{
+		width:80%;
+		height:100%;
+		margin:auto;
+		display: flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		h1{
+			font-family: $font1;
+			text-transform: uppercase;
+			font-size: 2em;
+			text-align:center;
+			color:$pink;
+
+		}
+
+		h2{
+			margin-top:1em;
+			font-family: $font1;
+			text-transform: uppercase;
+			font-size: 1em;
+			text-align:center;
+			color:$dark;
+			font-weight:300;
+		}
+
+		a{
+			display: block;
+			width:50%;
+			margin-top:2em;
+			padding: 1em;
+			text-align:center;
+		    color: #f9fafc;
+		    font-family: "Montserrat", sans-serif;
+		    text-transform: uppercase;
+		    letter-spacing: 2px;
+		    font-size: 0.8em;
+		    background: #d03960;
+		    text-decoration: none;
+		    :focus{
+		    	outline:none;
+		    }
+		}
+	}
+	
+}

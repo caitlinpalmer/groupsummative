@@ -3,7 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+
 	<title>Pinned - Auckland</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600|Open+Sans:400,400i,600,600i" rel="stylesheet">
 	<link rel="stylesheet" href="assets/fontawesome-pro-5.3.1-web/css/all.css">
@@ -25,7 +27,7 @@
 				<form action="" id="search-form" @submit.prevent="searchVenues">
 					<input type="text" name="search" id="search" placeholder="Search" v-model:value="keyword">
 					<i class="fal fa-search"></i>
-					<input type="submit" value="Search">
+					<!-- <input type="submit" value="Search"> -->
 				</form>
 			</div>
 			
@@ -91,11 +93,11 @@
 			</div>
 		</div>
 
-		<div class="layer3" v-if="currentVenue.name" :class="{current: currentLayer=='layer3'}">
+		<div class="layer3" :class="{current: currentLayer=='layer3'}">
 			<div class="back-arrow">
 				<i class="fal fa-arrow-left"></i>
 			</div>
-			<div class="venue-title">
+			<div class="venue-title" v-if="currentVenue.name">
 				<div class="text">
 					<h1>{{currentVenue.name}}</h1>
 					<h2>{{currentVenue.categories[0].name}} &#183; <i class="far fa-walking"></i> 6 min</h2>
@@ -106,7 +108,7 @@
 					<h2>directions</h2>
 				</div>
 			</div>
-			<div class="venue-info">
+			<div class="venue-info" v-if="currentVenue.name">
 				<div class="address" v-if="currentVenue.location">
 					<i class="fal fa-map-marker-alt"></i>
 					<p>{{currentVenue.location.formattedAddress.join(', ')}}</p>
@@ -129,16 +131,47 @@
 			</div>
 		</div>
 
-		<div class="layer4">
+		<div class="layer4" :class="{current: currentLayer=='layer4'}">
+			<div class="text">
+				<h1>oops...</h1>
+				<h2>Looks like you don't have an account with us</h2>
+				<!-- <h2>Sign up here</h2> -->
+				<a href="#" class="to-layer5" :class="{current: currentLayer=='layer5'}">Sign Up</a>
+			</div>
 			
+		</div>
+
+		<div class="layer5" :class="{current: currentLayer=='layer5'}">
+			<div class="sign-in">
+				<h1>sign in</h1>
+				<label for="inputEmail" class="sr-only"><i class="fal fa-user"></i></label>
+      			<input type="email" id="inputEmail" placeholder="Email address" required autofocus>
+      			<label for="inputPassword" class="sr-only"></label>
+      			<input type="password" id="inputPassword" placeholder="Password" required>
+      			<a href="#">Forgot Password?</a>
+      			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			</div>
+
+			<div class="social-login">
+				<div class="google-button">
+					<button><img src="assets/images/google.png" alt="">Sign up with google</button>
+				</div>
+				<div class="facebook-button">
+					<button><img src="assets/images/facebook.png" alt="">Sign up with facebook</button>
+				</div>
+			</div>
+
+			<div class="no-account">
+				<p>Don't have an account?<a href="#"> Sign up</a></p>
+			</div>
 		</div>
 
 		<div class="navigation">
 			<ul class="icons">
-				<li><i class="fal fa-search active"></i></li>
-				<li><i class="fal fa-map-marker-alt"></i></li>
-				<li><i class="fal fa-heart"></i></li>
-				<li><i class="fal fa-user"></i></li>
+				<li><i :class="{active: currentLayer=='layer1'}" class="fal fa-search"></i></li>
+				<li><i :class="{active: currentLayer=='layer2'}" class="fal fa-map-marker-alt"></i></li>
+				<li><i :class="{active: currentLayer=='layer4'}" class="fal fa-heart"></i></li>
+				<li><i :class="{active: currentLayer=='layer5'}" class="fal fa-user"></i></li>
 			</ul>
 		</div>
 	</div>

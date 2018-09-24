@@ -1,0 +1,181 @@
+.layer5{
+	position: absolute;
+	top:0;
+	left:0;
+	height:100vh;
+	width:100vw;
+	z-index:5;
+	opacity:0;
+
+	.sign-in{
+		width:80%;
+		margin-top:6em;
+		margin-left:auto;
+		margin-right:auto;
+		margin-bottom:2em;
+		padding-bottom:0.5em;
+		border-radius: 10px;
+		background: linear-gradient(to top right, $pink, $orange);
+		box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.5);
+
+
+		h1{
+			font-family: $font1;
+			font-size:1em;
+			text-align:center;
+			text-transform: uppercase;
+			letter-spacing:2px;
+			color:$light;
+			padding-top:1em;
+
+		}
+
+		input{
+			border:none;
+			background:none;
+			font-family: $font1;
+			font-size:0.8em;
+			text-transform: uppercase;
+			outline:none;
+			color:$light;
+			display: block;
+    		width: 90%;
+   			height: calc(2.25rem + 2px);
+   			padding: 0.375rem 0.5rem;	
+   			border-bottom:1px $light solid;
+   			margin: 2em auto;
+
+
+   			:focus{
+   				outline:none;
+   			}
+		}
+
+		input::placeholder{
+			color:$light;
+		}
+
+		a{
+			display: block;
+			width:95%;
+			text-align:right;
+			font-family: $font1;
+			font-size:0.8em;
+			text-transform: uppercase;
+			text-decoration: underline;
+			margin-bottom: 2em;
+		}
+
+		button{
+			width:50%;
+			margin:auto;
+			margin-bottom:1.5em;
+			border:none;
+			border-radius:20px;
+			color:$pink;
+			font-family: $font1;
+			font-size:1em;
+			text-transform: uppercase;
+		}
+		.btn-primary:focus{
+			box-shadow: none;
+		}
+		.btn-primary:hover{
+			background-color: $light;
+		}
+		.btn-primary:active{
+			border: none;
+			color:$pink;
+			box-shadow: none;
+		}
+		.btn:focus{
+			outline:none;
+			box-shadow: none;
+		}
+		.btn-primary:not(:disabled):not(.disabled):active:focus{
+			box-shadow: none;
+		}
+
+	}
+
+	.social-login{
+		width:80%;
+		margin:auto;
+
+		.google-button{
+			text-align: center;
+			margin-bottom:1em;
+
+			button{
+				width:70%;
+				background: $light;
+				font-family: $font1;
+				font-size:0.7em;
+				text-transform: uppercase;
+				color:$dark;
+				padding:1em;
+				border:none;
+				border-radius:20px;
+				box-shadow: 1px 1px 8px -1px rgba(0,0,0,0.5);
+				outline:none;
+
+				img{
+					width:20px;
+					height:auto;
+					margin-right:0.5em;
+				}
+			}
+
+		}
+		.facebook-button{
+			text-align: center;
+			button{
+				width:70%;
+				background: $light;
+				font-family: $font1;
+				font-size:0.7em;
+				text-transform: uppercase;
+				color:$dark;
+				padding:1em;
+				border:none;
+				border-radius:20px;
+				box-shadow: 1px 1px 8px -1px rgba(0,0,0,0.5);
+				outline:none;
+
+				img{
+					width:20px;
+					height:auto;
+					margin-right:0.5em;
+				}
+			}
+
+		}
+	}
+
+	.no-account{
+		width:80%;
+		margin:auto;
+
+		p{
+			font-family: $font1;
+			font-size:0.8em;
+			text-transform: uppercase;
+			color:$dark;
+			text-decoration: none;
+			text-align:center;
+
+			a{
+				font-family: $font1;
+				font-size:1em;
+				text-transform: uppercase;
+				color:$pink !important;
+
+				:focus{
+					outline:none;
+				}
+			}
+		}
+	}
+
+
+}
