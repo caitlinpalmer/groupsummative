@@ -23,6 +23,26 @@
     }
 }
 
+.modal-header {
+    background-color:$secondary;
+    border: none;
+    h5 {
+        color:#fff;
+    }
+}
+
+.modal {
+    top:10%;
+}
+
+.modal-body>p {
+    color:$secondary !important;
+}
+
+.modal-body {
+    padding: 0;
+}
+
 #mapform {
     z-index: 1000;
     background-color: transparent;
