@@ -75,3 +75,72 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+//Search List
+.search-results-container {
+    // border: black solid 1px;
+    border-radius: 6px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    height: auto;
+    background-color: white;
+    padding-bottom: 70px;
+    transition: all 1s;
+}
+
+.hide {
+    display: none;
+}
+
+.open {
+    top: 0;
+    height:auto;
+}
+
+.close {
+    top: 0vh;
+    height:0;
+}
+
+#overflow-container {
+    overflow: hidden;
+}
+
+
+.search-results {
+    // height:500px;
+    width: 90%;
+    margin: 1em auto; // bottom: 100%; 
+    // border:red solid 1px;
+    .search-item {
+        height: 150px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 2px;
+        display: flex;
+        box-shadow: 1px 1px 1px 1px grey;
+        margin-top: 1em;
+    }
+}
+
+.search-img {
+    height: 100%;
+    width: 60%; // border: black solid 1px;
+}
+
+.search-details {
+    padding: 0.8em;
+    width: 100%; // border: black solid 1px;
+}
+
+.search-results {
+    .arrow {
+        width: 30px;
+        margin: auto;
+        i {
+            font-size: 2.7em;
+            color: $secondary;
+        }
+    }
+}
