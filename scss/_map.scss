@@ -10,6 +10,17 @@
     z-index: 1000;
 }
 
+.mapheader {
+    height: 120px;
+    background-color: $secondary;
+    display: flex;
+    z-index: 1000;
+    top:0;
+    i {
+        color: #fff;
+    }
+}
+
 .custom-popup{
 	border:thin salmon solid;
 }

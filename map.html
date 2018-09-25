@@ -14,44 +14,54 @@
 
 <body>
     <div class="wrap1">
-        <div class="map-search">
+        <!-- <div class="map-search">
             <form id="mapform" action="" @submit.prevent="loadVenues">
-                <div class="header-search"><a href="#"><i class="fal fa-search"></i></a>
-                    <input type="text" name="search" id="keyword" v-model:value="keyword" placeholder="Search">
-                </div>
-                <!-- <div class="header-search"><select name="cars">
+                <div class="header-search"><a href="#"><i class="fal fa-search"></i></a> -->
+        <!--  <input type="text" name="search" id="keyword" v-model:value="keyword" placeholder="Search">
+                </div> -->
+        <!-- <div class="header-search"><select name="cars">
                     <option id="keyword" v-model:value="food">Volvo</option>
                     <option id="keyword" v-model:value="drinks">Saab</option>
                     <option id="keyword" v-model:value="hotel">Fiat</option>
                     <option id="keyword" v-model:value="food">Audi</option>
                 </select></div> -->
-            </form>
-        </div>
-        <div class="modal fade" id="venueModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <h6 class="venue-location">Modal body text goes here.</h6>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Find Directions</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+    </div>
+    <div class="modal fade" id="venueModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <h6 class="venue-location">Modal body text goes here.</h6>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Find Directions</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-        <div class="map-wrapper">
-            <div id="map"></div>
+    </div>
+    <div class="mapheader">
+        <div class="mh-logo"><i class="fas fa-map-pin fas fa-2x"></i>
         </div>
-        <ul class="venue-container">
-            <li v-for="venue in venues" v-bind:data-venueid="venue.venueid" class="venue-item">{{venue.name}}</li>
-        </ul>
+        <div>
+            <h3>Auckland's Top Picks</h3><span>Tap anywhere on the map to see what Auckland has in store for you.</span>
+        </div>
+    </div>
+    <!-- <div>
+            <form action="">
+                <div class="header-search"><a href="#"><i class="fal fa-search"></i></a>
+                    <input type="text" name="search" id="headerSearch" placeholder="Search">
+            </form>
+            </div> -->
+    </div>
+    <div class="map-wrapper">
+        <div id="map"></div>
+    </div>
     </div>
     <div class="navi-fixed">
         <ul class="icons">
