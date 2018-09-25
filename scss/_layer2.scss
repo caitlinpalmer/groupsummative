@@ -1,3 +1,4 @@
+/*All devices and mobile phone*/
 .layer2{
 	position: absolute;
 	top:0;
@@ -133,4 +134,68 @@
 }
 .modal-backdrop{
 	display:none;
+}
+
+/*for small tablet - inclusive*/
+
+@media only screen and (min-width : 40em) {
+	.layer2{
+		.filter-tabs{
+			width:3em;
+
+			li{
+				i{
+					font-size:1.5em;
+				}
+			}
+		}
+		.modal{
+			height:11em;
+			bottom:3em;
+			.modal-dialog{
+				width:50%;
+				margin:1em auto;
+				.modal-content{
+					padding: 0em;
+					.modal-header{
+						.modal-title{
+							font-size:1.2em;
+						}
+						.close{
+							font-size:1.8em;
+						}
+					}
+					.modal-body{
+						font-size:1.3em;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*for tablet - inclusive*/
+
+@media only screen and (min-width : 60em) {
+	.layer2{
+		.filter-tabs{
+			width:3.5em;
+
+			li{
+				flex:0 0 7.5%;
+				i{
+					font-size:2em;
+				}
+			}
+		}
+		.modal{
+			height:11em;
+			bottom:3em;
+			.modal-dialog{
+				max-width:800px;
+				margin:1em auto;
+			}
+			
+		}
+	}
 }

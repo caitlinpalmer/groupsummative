@@ -1,3 +1,4 @@
+/*All devices and mobile phone*/
 .layer5{
 	position: absolute;
 	top:0;
@@ -176,6 +177,128 @@
 			}
 		}
 	}
+}
+
+/*for small tablet - inclusive*/
+
+@media only screen and (min-width : 40em) {
+	.layer5{
+		display:flex;
+		flex-direction:column;
+
+		.sign-in{
+			h1{
+				font-size:1.5em;
+			}
+		}
+
+		.social-login{
+			.google-button{
+				button{
+					font-size:1em;
+					border-radius:30px;
+				}
+			}
+			.facebook-button{
+				button{
+					font-size:1em;
+					border-radius:30px;
+				}
+			}
+		}
+
+		.no-account{
+			p{
+				font-size:1em;
+			}
+		}
+	}
+}
 
 
+/*for tablet - inclusive*/
+
+@media only screen and (min-width : 60em) {
+	.layer5{
+		display:flex;
+		flex-direction:column;
+
+		.sign-in{
+			margin-top:9em;
+			h1{
+				font-size:2em;
+			}
+			button{
+				margin-top:1.5em;
+			}
+		}
+
+		.social-login{
+			.google-button{
+				button{
+					font-size:1em;
+					border-radius:30px;
+				}
+			}
+			.facebook-button{
+				button{
+					font-size:1em;
+					border-radius:30px;
+				}
+			}
+		}
+
+		.no-account{
+			margin-top:0;
+			p{
+				font-size:1em;
+			}
+		}
+	}
+}
+
+
+
+/*for destop - inclusive*/
+
+@media only screen and (min-width : 80em) {
+	.layer5{
+		display:flex;
+		flex-direction:column;
+
+		.sign-in{
+			width:50%;
+			margin-top:7em;
+			h1{
+				font-size:2em;
+			}
+			button{
+				margin-top:1.5em;
+			}
+		}
+
+		.social-login{
+			.google-button{
+				button{
+					width:40%;
+					font-size:1em;
+					border-radius:30px;
+				}
+			}
+			.facebook-button{
+				button{
+					width:40%;
+					font-size:1em;
+					border-radius:30px;
+				}
+			}
+		}
+
+		.no-account{
+			margin-top:0;
+			p{
+				font-size:1em;
+			}
+		}
+	}
 }

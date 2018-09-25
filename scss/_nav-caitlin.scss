@@ -27,8 +27,6 @@
 				display:block;
 				color:$dark;
 				font-size:1.4em;
-				//-webkit-background-clip: text;
-  				//-webkit-text-fill-color: transparent;
   				line-height: normal;
 			
 			}
@@ -49,6 +47,17 @@
 /*for small tablet - inclusive*/
 
 @media only screen and (min-width : 40em) {
+	.navigation{
+		height: 3.5em;
+
+		.icons{
+			li{
+				i{
+					font-size:2em;
+				}
+			}
+		}
+	}
 }
 
 

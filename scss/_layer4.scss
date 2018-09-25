@@ -1,3 +1,4 @@
+/*All devices and mobile phone*/
 .layer4{
 	position: absolute;
 	top:0;
@@ -51,6 +52,57 @@
 		    	outline:none;
 		    }
 		}
+	}	
+}
+
+/*for small tablet - inclusive*/
+
+@media only screen and (min-width : 40em) {
+	.layer4{
+		.text{
+			h1{
+				font-size:2.5em;
+			}
+			h2{
+				font-size:1.3em;
+			}
+			a{
+				font-size:1em;
+			}
+		}
 	}
-	
+}
+
+
+/*for tablet - inclusive*/
+
+@media only screen and (min-width : 60em) {
+	.layer4{
+		.text{
+			h1{
+				font-size:3em;
+			}
+			h2{
+				font-size:1.7em;
+			}
+			a{
+				font-size:1.5em;
+			}
+		}
+	}
+}
+
+
+
+/*for destop - inclusive*/
+
+@media only screen and (min-width : 80em) {
+	.layer4{
+		.text{
+			a{
+				width:40%;
+				font-size:1em;
+			}
+		}
+	}
 }

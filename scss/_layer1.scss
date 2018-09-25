@@ -1,16 +1,15 @@
-body{
-	position: relative;
-}
-
+/*All devices and mobile phone*/
 .layer1{
 	position: absolute;
 	top:0;
 	left:0;
-	padding-top: 6em;
-	padding-bottom:4em;
+	width:100vw;
 	height:100vh;
 	z-index:1;
 	opacity: 0;
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
 
 	.search{
 		display:flex;
@@ -47,11 +46,10 @@ body{
 	}
 
 	.category-block{
-	    height:30em;
 	    display: flex;
 	    align-items:center;
 	    align-content:flex-end;
-	    padding-top: 2em;
+	    padding-top: 3em;
 	    overflow: hidden;
 
 	    .categories {
@@ -107,5 +105,122 @@ body{
 	        }
 	    }
 	}
+}
 
+/*for small tablet - inclusive*/
+
+@media only screen and (min-width : 40em) {
+	.layer1{
+		.search{
+			margin-bottom:7em;
+			form{
+				width:60%;
+
+				input[type=text]{			
+					font-size: 1.2em;
+				}
+
+				i{
+					font-size:1.5em;
+				}
+			}
+		}
+		.category-block{
+			padding-top:0;
+			.categories{
+				.category-item{
+					flex:0 0 30%;
+					padding-bottom:5em;
+				}
+			}
+		}
+	}
+}
+
+
+/*for tablet - inclusive*/
+
+@media only screen and (min-width : 60em) {
+	.layer1{
+		justify-content:center;
+		.search{
+			margin-bottom:3em;
+			form{
+				width:60%;
+
+				input[type=text]{			
+					font-size: 1.7em;
+				}
+
+				i{
+					font-size:2em;
+				}
+			}
+		}
+		.category-block{
+			flex:0 0 70%;
+			padding-top:4em;
+			.categories{
+				.category-item{
+					flex:0 0 40%;
+
+					p{
+						font-size:1.5em;
+					}
+
+					i{
+	               		font-size: 4em;
+	            	}
+				}
+			}
+		}
+	}
+}
+
+
+
+/*for destop - inclusive*/
+
+@media only screen and (min-width : 80em) {
+	.layer1{
+		justify-content:initial;
+		.search{
+			margin-top: 15em;
+			margin-bottom:3em;
+			form{
+				width:40%;
+
+				input[type=text]{			
+					font-size: 1.7em;
+				}
+
+				i{
+					font-size:2em;
+				}
+			}
+		}
+		.category-block{
+			flex:0 0 40%;
+			padding-top:0;
+			.categories{
+				.category-item{
+					flex:0 0 15%;
+					display: flex;
+					flex-direction:column;
+					align-items: center;
+					box-shadow:1px 1px 7px -1px rgba(0,0,0,0.5);
+					padding:3em 0;					
+					i{
+						flex:1 0 0;
+	               		font-size: 3em;
+	            	}
+
+					p{
+						flex:2 0 0;
+						font-size:1em;
+					}	
+				}
+			}
+		}
+	}
 }

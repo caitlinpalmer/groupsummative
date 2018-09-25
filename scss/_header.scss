@@ -1,3 +1,4 @@
+/*All devices and mobile phone*/
 .header {
     height: 4.5em;
     background: transparent;
@@ -15,5 +16,47 @@
         width: 30px;
         height:auto;
         margin: auto;
+    }
+}
+
+
+/*for small tablet - inclusive*/
+
+@media only screen and (min-width : 40em) {
+    .header{
+        .header-logo{
+            img{
+                width:40px;
+            }
+        }
+    }
+}
+
+
+/*for tablet - inclusive*/
+
+@media only screen and (min-width : 60em) {
+    .header{
+        height:6em;
+        .header-logo{
+            img{
+                width:45px;
+            }
+        }
+    }
+}
+
+
+
+/*for destop - inclusive*/
+
+@media only screen and (min-width : 80em) {
+    .header{
+        height:6em;
+        .header-logo{
+            img{
+                width:40px;
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 const version = '?v=20170901';
-const clientid = '&client_id=0JP2PK1FZJNWPMRXAH1NUCJZS0BFNKLU2KJFXQPU2GYOZXO0';
-const clientSecret = '&client_secret=EYZLCGCOKR3U5KJKBLUCV2FWOBTZ5SNNQSI2RA0RQM0KYPHA';
+const clientid = '&client_id=DD5SF4GLI3I1EE20AJDSOP4ZXTP5BI5GFHA10VISFDCQIEWX';
+const clientSecret = '&client_secret=OKUULRSKZ4KWJDWVYNAVMDY1HRMPVGOKD33RACYCTCSVR0U1';
 const key = version + clientid + clientSecret;
 
 var map;
@@ -25,7 +25,7 @@ var icons = {
 	shopping: 'assets/images/orangedot.svg',
 	banks: 'assets/images/yellowdot.svg',
 	activities: 'assets/images/pinkdot.svg',
-	search: 'assets/images/pinkdot.svg'
+	search: 'assets/images/lightpurpledot.svg'
 }
 
 
