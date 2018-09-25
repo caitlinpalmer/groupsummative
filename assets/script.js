@@ -151,21 +151,17 @@ if (document.querySelector('.wrap2')) {
         $('#searchAccomodation a').on('click', function(e) {
             e.preventDefault();
             app2.loadVenues(-36.8446152873055, 174.76662397384644, '4bf58dd8d48988d1fa931735')
-
         });
         $('#searchShops a').on('click', function(e) {
             e.preventDefault();
             app2.loadVenues(-36.8446152873055, 174.76662397384644, '4d4b7105d754a06378d81259')
-
         });
         $('#searchTransport a').on('click', function(e) {
             app2.loadVenues(-36.8446152873055, 174.76662397384644, '4bf58dd8d48988d1fe931735')
 
-
         });
         $('#searchFood a').on('click', function(e) {
             app2.loadVenues(-36.8446152873055, 174.76662397384644, '4d4b7105d754a06374d81259')
-
 
         });
         $('#searchAttractions a').on('click', function(e) {
@@ -176,13 +172,13 @@ if (document.querySelector('.wrap2')) {
         $('#searchRecreation a').on('click', function(e) {
             e.preventDefault();
             app2.loadVenues(-36.8446152873055, 174.76662397384644, '4d4b7105d754a06377d81259')
-
         });
         $('.arrow').on('click', function(e) {
             e.preventDefault();
             $(".search-results-container").toggleClass("open");
         });
         $('.category-item-content').click(function() {
+            $('body').removeClass('.no-overflow');
             $('.search-results-container').toggleClass('open');
         });
     })

@@ -65,14 +65,8 @@
     right: 100%;
 }
 
-.slideOut {
-    right:0;
-    transition:1s;
-}
-
-.slideIn {
-    transition:1s;
-    right:100%;
+no-overflow {
+    overflow: hidden;
 }
 
 .bar-nav nav ul li a:hover,.bar-nav nav ul li a:active {

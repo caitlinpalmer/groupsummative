@@ -98,15 +98,22 @@
     height:auto;
 }
 
+.no-overflow {
+    overflow: hidden;
+}
+
+.overflow {
+    overflow: visible !important;
+}
+
 .close {
     top: 0vh;
     height:0;
 }
 
-#overflow-container {
-    overflow: hidden;
+.categories {
+    overflow: visible !important
 }
-
 
 .search-results {
     // height:500px;
