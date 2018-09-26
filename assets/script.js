@@ -7,7 +7,6 @@ var directionsService;
 var foodDrink = ["this food place", "another food place","Café", "Cafe", "Japanese Restaurant", "Coffee Shop","Sandwich Place","Asian Restaurant","Brazilian Restaurant","Snack Place","Indian Restaurant"];
 var parks = ["Park", "park", "Playground"];
 
-// $('.venue-container').hide();
 $(function(){
 	//set explore location to Auckland city
 	let center = [-36.857011,174.764305];
@@ -40,12 +39,6 @@ $(function(){
 			//give different types of places different icons
 			_(venues).each(function(venue){
 
-				// console.log(venue);
-
-				// if(venue.category == "Shopping Mall" || venue.category == "Café"){
-				// 	iconLink = "icon_fastfood.svg"
-				// }
-
 				if(foodDrink.indexOf(venue.category) != -1){
 					// iconLink is the food icon
 					iconLink = "assets/fastFood.svg"
@@ -57,6 +50,7 @@ $(function(){
 				}
 
 				else {
+					//Map pin icon
 					iconLink = "assets/mapPin.svg"
 				}
 
@@ -77,7 +71,7 @@ $(function(){
 
 				});
 			});
-				
+
 		}
 	});
 	//directions on how to get to place
@@ -100,10 +94,10 @@ $(function(){
 				};
 
 				var request = {
-			          origin: myLocation,
-			          destination: destinationLatLng,
-			          travelMode: 'WALKING'
-			    };
+					origin: myLocation,
+					destination: destinationLatLng,
+					travelMode: 'WALKING'
+				};
 
 				//ask directionsService to fulfill your request
 				directionsService.route(request,function(response,status){
@@ -124,7 +118,6 @@ $(function(){
 				});
 			});
 		}
-		// console.log(destinationLatLng);
 	});
 });
 
@@ -133,10 +126,6 @@ function initMap(){
 	directionsService = new google.maps.DirectionsService;
 	
 }
-$( ".btn-primary" ).click(function() {
-	$('.venue-container').show();
-
-});
 
 let app = new Vue({
 	el:'.mapHeader',
@@ -152,7 +141,6 @@ let app = new Vue({
 				url: urlProjects,
 				dataType: 'jsonp',
 				success: function(res){
-					// console.log(res);
 					// app.venues = res.response.groups;
 					var data = res.response.venues;
 					console.log(data);
@@ -183,39 +171,44 @@ let app = new Vue({
 	}
 });
 
+//function to be called popup venue info
 function venuePopup(venueid){
 
-			var venueUrl = 'https://api.foursquare.com/v2/venues/'+venueid+key;
+	var venueUrl = 'https://api.foursquare.com/v2/venues/'+venueid+key;
 
-			$.ajax({
-				url:venueUrl ,
-				dataType:'jsonp',
-				success:function(res){
-					console.log(res);
-					var venue = res.response.venue;
-					$('.modal-title').empty();
-					console.log(venue);
-					$('.modal-body').empty();
-					$('.modal-title').text(venue.name);
-					var bodyHTML = '<p>Likes: '+venue.likes.count +'</p><p>Address: '+venue.location.formattedAddress + '</p><p>Website:</p> <a href="url">'+venue.url+'</a>';
-					if(venue.hours){
-						bodyHTML += '<p>Hours: '+venue.hours.status+'</p>'
-					}
-					$('.modal-body').html(bodyHTML);
-				
-					if(venue.bestPhoto){
-						var photos = venue.bestPhoto;
-						var source = photos.prefix+'100x100'+photos.suffix;
-						$('<img src="'+source+'">').appendTo('.modal-body');
-					}
+	$.ajax({
+		url:venueUrl ,
+		dataType:'jsonp',
+		success:function(res){
+			console.log(res);
+			var venue = res.response.venue;
+			$('.modal-title').empty();
+			console.log(venue);
+			$('.modal-body').empty();
+			$('.modal-title').text(venue.name);
+			var bodyHTML = '<p>Likes: '+venue.likes.count +'</p><p>Address: '+venue.location.formattedAddress + '</p>';
+			//if has website display website
+			if(venue.url){
+				bodyHTML += '<p>Website:</p> <a href="url">'+venue.url+'</a><br />'
+			}
+			//if has hours display 
+			if(venue.hours){
+				bodyHTML += '<p>Hours: '+venue.hours.status+'</p>'
+			}
+			$('.modal-body').html(bodyHTML);
+			//if has photo display
+			if(venue.bestPhoto){
+				var photos = venue.bestPhoto;
+				var source = photos.prefix+'100x100'+photos.suffix;
+				$('<img src="'+source+'">').appendTo('.modal-body');
+			}
 
-					$('.get-directions').data('lat', venue.location.lat);
-					$('.get-directions').data('lng', venue.location.lng);
-					
-					
-					$('#venueModal').modal('show');
-				}
-			});
-			console.log(venueUrl);
+			$('.get-directions').data('lat', venue.location.lat);
+			$('.get-directions').data('lng', venue.location.lng);
+
+
+			$('#venueModal').modal('show');
+		}
+	});
 
 }

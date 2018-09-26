@@ -23,59 +23,53 @@
 		</form>
 
 		<ul class="venue-container">
-				
+
 			<li v-for="venue in venues" :data-venueid="venue.venueid" class="venue-item" @click="showVenue">{{venue.name}}</li>
 			
 		</ul>
+		</div>
 
-<!-- 		<form action="">
-			<div class="header-search"> <a href="#"><i class="fal fa-search"></i></a>
-				<input type="text" name="search" id="headerSearch" placeholder="Search">
-			</form> -->
-		<!-- </div> -->
-	</div>
+		<div id="map"></div>
 
- 	<div id="map"></div>
+		<div class="modal" id="venueModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Modal body text goes here.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary get-directions">Directions</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navigation">
+			<ul class="icons">
+				<li><a href="index.html"><i class="fal fa-search"></i></li></a>
+				<li><a href="map.html"><i class="fal fa-map-marker-alt"></i></li></a>
+				<li><a href="#"><i class="fal fa-heart"></i></li></a>
+				<li><a href="login.html"><i class="fal fa-user"></i></li></a>
+			</ul>
+		</div>
 
-	 <div class="modal" id="venueModal" tabindex="-1" role="dialog">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        <p>Modal body text goes here.</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary get-directions">Directions</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<div class="navigation">
-		<ul class="icons">
-			<li><a href="index.html"><i class="fal fa-search"></i></li></a>
-			<li><a href="map.html"><i class="fal fa-map-marker-alt"></i></li></a>
-			<li><a href="#"><i class="fal fa-heart"></i></li></a>
-			<li><a href="#"><i class="fal fa-user"></i></li></a>
-		</ul>
-	</div>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/template7/1.4.0/template7.min.js"></script>
-	<script src="assets/underscore.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script src="assets/script.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/template7/1.4.0/template7.min.js"></script>
+		<script src="assets/underscore.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="assets/script.js"></script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDknEtmtQzCjjFGOAJiHVFKcBegAsUBUKc&callback=initMap"
-    async defer></script>
-</body>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDknEtmtQzCjjFGOAJiHVFKcBegAsUBUKc&callback=initMap"
+		async defer></script>
+	</body>
 
-</html>
+	</html>
