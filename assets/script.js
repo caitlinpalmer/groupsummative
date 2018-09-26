@@ -87,10 +87,6 @@ $(function(){
 	$('#map').on('click','.direction',function(e){
 		e.preventDefault();
 	});	
-
-
-
-
 });
 
 function getVenues(location,category,icon,layer){
@@ -103,8 +99,6 @@ function getVenues(location,category,icon,layer){
 		success:function(res){
 			var data = res.response.venues;
 
-			console.log(data);
-
 			var venues = _(data).map(function(item){
 				return {
 					latlng:{lat:item.location.lat,lng:item.location.lng},
@@ -112,8 +106,6 @@ function getVenues(location,category,icon,layer){
 					venueid:item.id
 				};
 			});
-
-			// console.log(venues);
 
 			_(venues).each(function(venue){
 
@@ -133,7 +125,6 @@ function getVenues(location,category,icon,layer){
 						url:venueUrl,
 						dataType:'jsonp',
 						success:function(res){
-							console.log(res);
 							app.currentVenue = res.response.venue;
 
 							$('.modal').modal('show');
@@ -148,7 +139,6 @@ function getVenues(location,category,icon,layer){
 						url:venueLinksUrl,
 						dataType:'jsonp',
 						success:function(res){
-							console.log(res);
 							
 						}
 					});	
@@ -163,14 +153,11 @@ function getVenues(location,category,icon,layer){
 function searchVenuesFunction(location,keyword,icon,layer){
 
 	let placesUrl = 'https://api.foursquare.com/v2/venues/search'+key+'&ll='+location+'&query='+keyword;
-	console.log(placesUrl);
 	$.ajax({
 		url:placesUrl,
 		dataType:'jsonp',
 		success:function(res){
 			var data = res.response.venues;
-
-			console.log(data);
 
 			var venues = _(data).map(function(item){
 				return {
@@ -179,8 +166,6 @@ function searchVenuesFunction(location,keyword,icon,layer){
 					venueid:item.id
 				};
 			});
-
-			// console.log(venues);
 
 			_(venues).each(function(venue){
 
@@ -200,7 +185,6 @@ function searchVenuesFunction(location,keyword,icon,layer){
 						url:venueUrl,
 						dataType:'jsonp',
 						success:function(res){
-							console.log(res);
 							app.currentVenue = res.response.venue;
 
 							$('.modal').modal('show');
@@ -215,7 +199,6 @@ function searchVenuesFunction(location,keyword,icon,layer){
 						url:venueLinksUrl,
 						dataType:'jsonp',
 						success:function(res){
-							console.log(res);
 							
 						}
 					});	
@@ -266,8 +249,6 @@ var app = new Vue({
 	},
 	methods:{
 		showDirections:function(event){
-
-			console.log(event);
 			if (navigator.geolocation) {
 
 				navigator.geolocation.getCurrentPosition(position=>{
@@ -302,8 +283,6 @@ var app = new Vue({
 							return {lat:item.lat(),lng:item.lng()};
 						});
 
-						console.log(polyline);
-
 						L.polyline(polyline,{
 							color:'#d03960',
 							weight:3
@@ -315,7 +294,6 @@ var app = new Vue({
 			this.currentLayer = 'layer2';
 		},
 		searchVenues:function(){
-			console.log(this.keyword);
 			layers.search.clearLayers();
 			hideAllLayers();
 			searchVenuesFunction(ll,this.keyword,icons.search,layers.search);
@@ -336,7 +314,6 @@ var app = new Vue({
 			app.currentLayer='layer3';
 		});
 		$('.back-arrow').on('click',function(){
-			console.log('hi');
 			app.currentLayer='layer2';
 		});
 		$('.fa-heart').on('click',function(){
@@ -354,7 +331,6 @@ var app = new Vue({
 
 //google map directions
 function initMap(){
-	console.log('init')
 	directionsService = new google.maps.DirectionsService;
 	
 }
