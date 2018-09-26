@@ -1,7 +1,9 @@
 const version = '?v=20170901'
-const clientid = '&client_id=2SQCQ5NULNQSNS2X4WKXP4KS1DHVNT0BSUK4TSJSC0US32KM';
-const clientSecret = '&client_secret=D0VSBOY20TADAZBEZ2PEIXNVYUXPZZGU5DLJ1SD2DMNLMYPP';
+const clientid = '&client_id=GKIZQEGQ4CSRC3IGI4FS32KZ0MJAP3GJSKMWDY0X30CZIEJS';
+const clientSecret = '&client_secret=LQ0ETKKGDGZFSSYNOLUZZCRGYOEO1XLX2PKAEI0PLQVIIG4H';
 const key = version + clientid + clientSecret;
+
+var directionsService;
 
 var restaurantArray = ["Indian Restaurant", "Food Court", "Japanese Restaurant", "Australian Restaurant", "Pizza Place", "Vegetarian / Vegan Restaurant", "Restaurant", "Steakhouse", "Vietnamese Restaurant", "Seafood Restaurant", "Mexican Restaurant", "Asian Restaurant", "Sushi Restaurant", "Middle Eastern Restaurant", "Noodle House", "Cajun / Creole Restaurant", "French Restaurant", "Italian Restaurant", "Modern European Restaurant"]
 
@@ -11,6 +13,9 @@ $(function(){
 		//starting point
 		var center = [-36.851012,174.764318];
 		var map = L.map('map').setView(center, 13.5);
+
+		//direction line on map
+		var directionsLayerGroup = L.layerGroup().addTo(map);
 
 		//map tilelayer
 		L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGhhbHl4OTAiLCJhIjoiY2o2YjdrZHRlMWJmYjJybDd2cW1rYnVnNSJ9.j_DQLfixHfhioVjH6qmqkw').addTo(map);
@@ -67,12 +72,16 @@ $(function(){
 
 					//show popup
 
-					marker.bindPopup('<h6 class="popup-name">' + venue.name + '</h6><br><p class="popup-category">' + venue.category + '</p><br><button type="button" data-venueid="'+venue.venueid+'" class="btn btn-info showModalButton">See more</button>');
+					marker.bindPopup('<h6 class="popup-name">' + venue.name + '</h6><br><p class="popup-category">' + venue.category + '</p><br><button type="button" data-venueid="'+venue.venueid+'" class="btn btn-dark showModalButton">See more</button>');
+
+					marker.on('click',function(){
 
 
+						var ll = this._latlng;
+						$('.get-directions').data('lat',ll.lat);
+						$('.get-directions').data('lng',ll.lng)
 
-					// show modal
-
+					})
 					
 				});
 			}
@@ -87,28 +96,159 @@ $(function(){
 				url:venueUrl,
 				dataType:'jsonp',
 				success:function(res){
+					console.log(res);
 					var venue = res.response.venue;
 
-					// console.log(venue);
+					console.log(venue);
+
+					//fill in modal
 					
 					$('.modal-title').text(venue.name);
 
 					var photos = venue.bestPhoto;
 					var source = photos.prefix+'100x100'+photos.suffix;
-					$('.modal-body').empty();
-					$('<img src="'+source+'">').appendTo('.modal-body');
+					$('.modal-image').empty();
+					// $('.modal-text').empty();
+					$('<img src="'+source+'">').appendTo('.modal-image');
 
+
+					var info = {
+						name: venue.name,
+						url: venue.url ? venue.url : '',
+						phone: venue.contact.formattedPhone ? venue.contact.formattedPhone : '',
+						address: venue.location.formattedAddress ? venue.location.formattedAddress.join(', ') : '',
+					};
+					app.popupInfo = info;
+
+					//show modal
 					$('#venueModal').modal('show');
-					console.log($('#venueModal'));
 
 				}	
 			});
 
 			
 		});
-	}
+
+		//directions on how to get to place
+
+		$('.get-directions').on('click',function(){
+
+			//show modal
+			$('#venueModal').modal('hide');
+
+			if (navigator.geolocation) {
+
+				navigator.geolocation.getCurrentPosition(position=>{
+					var myLocation = {
+						lat:position.coords.latitude,
+						lng:position.coords.longitude
+					};
+
+					//create a request for directions
+
+					var destinationLatLng = {
+						lat: $(this).data('lat'),
+						lng: $(this).data('lng')
+					};
+
+			
+
+					var request = {
+						origin: myLocation,
+						destination: destinationLatLng,
+						travelMode: 'WALKING'
+					};
+
+					//ask directionsService to fulfill your request
+					directionsService.route(request,function(response,status){
+
+						directionsLayerGroup.clearLayers();
+						
+
+						var path = response.routes["0"].overview_path;
+
+						var polyline = _(path).map(function(item){
+							return {lat:item.lat(),lng:item.lng()};
+						});
+
+						L.polyline(polyline,{
+							color:'#985E6D',
+							weight:5
+						}).addTo(directionsLayerGroup);						
+					});
+				});
+			}
+		});
+
+
+		$( ".btn-primary" ).click(function() {
+			$('.venue-container').show();
+
+		});
+
+		var app = new Vue({
+			el:'.header',
+			data:{
+				venues:[],
+				keyword:''
+			},
+			methods:{
+				loadVenues: function(){
+					//ajax request
+					let urlProjects = 'https://api.foursquare.com/v2/venues/search'+key+'&limit=5&ll=-36.857011,174.764305&query='+this.keyword;
+					$.ajax({
+						url: urlProjects,
+						dataType: 'jsonp',
+						success: function(res){
+							// console.log(res);
+							// app.venues = res.response.groups;
+							var data = res.response.venues;
+							console.log(data);
+							var venues = _(data).map(function(item){
+								return {
+									venueid:item.id,
+									name:item.name,
+									latlng: {lat:item.location.lat,lng:item.location.lng}
+								}
+							});
+							//assign venues to vue data
+							app.venues = venues;
+						}
+					});
+
+				},
+				showVenue:function(event){
+					console.log(event);
+
+					var venueid = $(event.target).data('venueid');
+					venuePopup(venueid);
+
+				}
+			},
+
+			mounted:function(){
+				this.loadVenues()
+			}
+		});
+	}	
+
+});
+
+
+//googlemaps directions
+function initMap(){
+	directionsService = new google.maps.DirectionsService;
+	
+}
 
 
 
+	var app = new Vue({
+		el:'.wrap',
+		data:{
+			popupInfo:{}
+		},
+		methods:{
 
-});		
+		}
+	});

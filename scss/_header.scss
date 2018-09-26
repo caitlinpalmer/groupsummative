@@ -19,15 +19,18 @@
 
 .header-search input[type=text]:focus {
     outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 .header-search input[type=text] {
     display: block;
     border: #fff solid;
-    flex: 0 0 70%;
+    flex: 0 0 90%;
     line-height: 25px;
     font-size: 18px;
     padding-left: 0.2em;
+    margin: auto;
 }
 
 .header-search {
@@ -36,11 +39,25 @@
     margin-top: 10px;
     background-color: white;
     border-radius: 3px;
-    width: 90%;
+    width: 80%;
     padding: 3px;
     a>i {
         font-size: 27px;
         margin: 2px;
         color: $gray-600;
+    }
+}
+
+.submit-search{
+    background-color: white;
+    border: none;
+    position: relative;
+    i{
+        font-size: 2em;
+        margin: 2px;
+        color: $gray-600;
+        position: absolute;
+        right: .5em;
+        top: 0;
     }
 }

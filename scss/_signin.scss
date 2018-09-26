@@ -4,6 +4,17 @@ body {
   background-color: $dark;
 }
 
+.back-button{
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  
+  i{
+    color: white;
+    size: 2em;
+  }
+}
+
 .text-center {
   display: -ms-flexbox;
   display: flex;

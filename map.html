@@ -16,48 +16,66 @@
 </head>
 
 <body id="map-page">
-	
-	<div class="header">
-		<div class="header-logo"><i class="fas fa-map-pin fas fa-2x"></i>
 
-		</div>
-		<form action="">
-			<div class="header-search"> <a href="#"><i class="fal fa-search"></i></a>
-				<input type="text" name="search" id="headerSearch" placeholder="Search">
+	<div class="wrap">
+		<div class="header">
+			<div class="header-logo">
+				<i class="fas fa-map-pin fas fa-2x"></i>
+			</div>
+			<form class="header-search" action="" @submit.prevent="loadVenues">
+				<input type="text" class="form-control" id="keyword" v-model:value="keyword">
+				<button type="submit" class="submit-search"> 
+					<i class="fal fa-search"></i>
+				</button>
 			</form>
+			<ul class="venue-container">
+
+				<li vß-for="venue in venues" :data-venueid="venue.venueid" class="venue-item" @click="showVenue">{{venue.name}}</li>
+			
+			</ul>
 		</div>
-	</div>
 
-	<div id="map"></div>
+		<div id="map"></div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="venueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        ...
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+		<!-- Modal -->
+		<div class="modal fade" id="venueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="modal-image"></div>
+		        <div class="modal-text" id="app-text">
+	        		<p>    			
+	        			{{popupInfo.address}}
+	        		</p>
+	        		<p class="venue-url">       			
+	        			<a :href="popupInfo.url">{{popupInfo.url}}</a>
+	        		</p>
+	        		<p>       			
+	        			{{popupInfo.phone}}
+	        		</p>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary get-directions">Get Direction</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
-	<div class="navigation">
-		<ul class="icons">
-			<li><a href="index.html"><i class="fal fa-search"></i></a></li>
-			<li><a href="map.html"><i class="fal fa-map-marker-alt"></i></a></li>
-			<li><a href="fav.html"><i class="fal fa-heart"></i></a></li>
-			<li><a href="login.html"><i class="fal fa-user"></i></a></li>
-		</ul>
+		<div class="navigation">
+			<ul class="icons">
+				<li><a href="index.html"><i class="fal fa-search"></i></a></li>
+				<li><a href="map.html"><i class="fal fa-map-marker-alt current"></i></a></li>
+				<li><a href="login.html"><i class="fal fa-heart"></i></a></li>
+			</ul>
+		</div>
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -69,6 +87,9 @@
 	<script src="assets/underscore.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="assets/script.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDknEtmtQzCjjFGOAJiHVFKcBegAsUBUKc&callback=initMap"
+    async defer></script>
 </body>
 
 </html>

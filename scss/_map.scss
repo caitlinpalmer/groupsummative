@@ -14,13 +14,62 @@
 	line-height: 1;
 }
 
-.btn-info{
+.showModalButton{
 	line-height: .5em;
 	height: 1.5em;
 	font-size: 1.2em;
+	background-color: $dark;
 }
 
 .leaflet-popup-content{
 	width: 50vw !important;
 	// height: 20vh;
+}
+
+.modal-body{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+
+	.modal-image{
+		flex: 0 0 40%;
+
+		img{
+			width: 100%;
+		}
+
+	}
+
+	.modal-text{
+		flex: 0 0 50%;
+		margin: .5em;
+
+		.venue-url{
+			font-size: .7em;
+			text-decoration: underline;
+			color: $hyperlink !important;
+			white-space: -moz-pre-wrap; /* Mozilla */
+			white-space: -hp-pre-wrap; /* HP printers */
+			white-space: -o-pre-wrap; /* Opera 7 */
+			white-space: -pre-wrap; /* Opera 4-6 */
+			white-space: pre-wrap; /* CSS 2.1 */
+			white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+			word-wrap: break-word; /* IE */
+			word-break: break-all;
+		}
+	}
+}
+
+.modal-body p{
+	color: black;
+	text-decoration: none;
+	font-size: .8em;
+	margin: 0 0 .6em 0;
+}
+
+.modal-footer{
+	.btn-secondary{
+		background-color: $dark;
+		border-color: $dark;
+	}
 }
