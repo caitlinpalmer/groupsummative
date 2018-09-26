@@ -41,17 +41,17 @@ $(function(){
 
 				if(foodDrink.indexOf(venue.category) != -1){
 					// iconLink is the food icon
-					iconLink = "assets/fastFood.svg"
+					iconLink = "assets/fastFood.svg";
 				}
 
 				else if(parks.indexOf(venue.category) != -1){
 					// iconLink is the playground icon
-					iconLink = "assets/playground.svg"
+					iconLink = "assets/playground.svg";
 				}
 
 				else {
 					//Map pin icon
-					iconLink = "assets/mapPin.svg"
+					iconLink = "assets/mapPin.svg";
 				}
 
 				let venueIcon = L.icon({
@@ -149,7 +149,7 @@ let app = new Vue({
 							venueid:item.id,
 							name:item.name,
 							latlng: {lat:item.location.lat,lng:item.location.lng}
-						}
+						};
 					});
 					//assign venues to vue data
 					app.venues = venues;
@@ -167,7 +167,7 @@ let app = new Vue({
 	},
 
 	mounted:function(){
-		this.loadVenues()
+		this.loadVenues();
 	}
 });
 
@@ -189,11 +189,11 @@ function venuePopup(venueid){
 			var bodyHTML = '<p>Likes: '+venue.likes.count +'</p><p>Address: '+venue.location.formattedAddress + '</p>';
 			//if has website display website
 			if(venue.url){
-				bodyHTML += '<p>Website:</p> <a href="url">'+venue.url+'</a><br />'
+				bodyHTML += '<p>Website:</p> <a href="url">'+venue.url+'</a><br />';
 			}
 			//if has hours display 
 			if(venue.hours){
-				bodyHTML += '<p>Hours: '+venue.hours.status+'</p>'
+				bodyHTML += '<p>Hours: '+venue.hours.status+'</p>';
 			}
 			$('.modal-body').html(bodyHTML);
 			//if has photo display
