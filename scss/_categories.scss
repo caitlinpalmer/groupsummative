@@ -1,18 +1,20 @@
 .categories {
     @include make-row();
     margin: 0;
-    width: 100%;
+    width: 100vw;
+    height: 69vh;
 
     .category-item {
         @include make-col(6);
         border: thin $light solid;
         margin: 0;
-        padding-top: 42%;
+        // padding-top: 42%;
         position: relative;
         background-color: $dark;
         color:$light;
         border-top: none;
         border-left: none;
+        height: 23vh;
         &-content {
             position: absolute;
             width: 100%;

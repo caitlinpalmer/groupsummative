@@ -1,0 +1,38 @@
+#map { 
+	height: 81vh; 
+	z-index: 1;
+	position: relative; 
+}
+.mapHeader{
+	height: 8vh;
+}
+a.leaflet-control-zoom-in {
+	color: black !important; 
+}
+a.leaflet-control-zoom-out {
+	color: black !important; 
+}
+
+.modal-body {
+	p {
+		color: #000;
+		text-decoration: none;
+	}
+	img{
+		margin-top: 1em;
+	}
+}
+
+.venue-container{
+	position: relative;
+	margin-top: 1vh;
+	padding-top: 1vh;
+	height: 20vh;
+	background-color: white;
+	z-index: 2;
+	list-style: none;
+	padding-right: 40px;
+	li{
+		border-bottom: 1px $dark solid;
+	}
+}
