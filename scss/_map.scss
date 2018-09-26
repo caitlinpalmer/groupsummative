@@ -3,9 +3,6 @@
     position: relative;
 }
 
-// .map-wrapper {
-// 	position: relative;
-// }
 .navi-fixed {
     z-index: 1000;
 }
@@ -15,14 +12,49 @@
     background-color: $secondary;
     display: flex;
     z-index: 1000;
-    top:0;
+    position: fixed;
+    top: 0;
     i {
         color: #fff;
+        margin-top: 20px;
+        font-size: 40px;
     }
 }
 
-.custom-popup{
-	border:thin salmon solid;
+.mh-logo {
+    margin: 1em;
+}
+
+.venue-info {
+    margin: 1em;
+}
+
+.address {
+    display: flex;
+    &-logo {
+        flex: 0 0 25%;
+        text-align: center;
+        transform: translateY(15%);
+        i {
+            font-size: 1.8em;
+        }
+    }
+}
+
+.venue-location {
+    width: 90%;
+}
+
+h6 {
+    margin-top: 5px;
+}
+
+.header-text {
+    margin: 1em;
+}
+
+.custom-popup {
+    border: thin salmon solid;
 }
 
 .icons {
@@ -35,19 +67,19 @@
 }
 
 .modal-header {
-    background-color:$secondary;
+    background-color: $secondary;
     border: none;
     h5 {
-        color:#fff;
+        color: #fff;
     }
 }
 
 .modal {
-    top:10%;
+    top: 10%;
 }
 
 .modal-body>p {
-    color:$secondary !important;
+    color: $secondary !important;
 }
 
 .modal-body {
@@ -72,9 +104,11 @@
 }
 
 
+
 /*tablet */
 
 @media only screen and (min-width: 60em) {}
+
 
 
 /*destop*/

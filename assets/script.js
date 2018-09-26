@@ -1,6 +1,6 @@
 const version = '?v=20170901';
-const clientid = '&client_id=WA1IDVPVFKUJGDYEM44LP25GUOYE12AQNYCXIR5UCHVPBDZT';
-const clientSecret = '&client_secret=XFN1HXICSS4GTXJUJBO4U5VOEZYZUBVWYVW13F0LZJ42QKMA';
+const clientid = '&client_id=KNF51RSAJA1DUYSP3GLGFO1UYIZTEX15EAJPNBMEJISHYKFY';
+const clientSecret = '&client_secret=5TDNRKGHJCSU54LN4Q0X3UWZMTCDTYXTZDSYFGACQDS5MEPE';
 const key = version + clientid + clientSecret;
 
 let mylocation = { lat: 1, lng: 1 };
@@ -16,18 +16,21 @@ $(function() {
         markersGroup = L.layerGroup().addTo(map);
         L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibXRlbmNlbGEiLCJhIjoiY2pra2V5a29nMGJpZDNrbWg4YXhqOWY4MCJ9.cdl_vXWGICRXKkjYFtpU0g').addTo(map);
 
-        L.circle(center, {
-            radius: 250,
-            color: 'salmon',
-            weight: 1,
-            fill: false
-        }).addTo(map);
+        // L.circle(center, {
+        //     radius: 250,
+        //     color: 'salmon',
+        //     weight: 1,
+        //     fill: false
+        // }).addTo(map);
+
+        L.control.zoom({ position: 'bottomright' })
 
         map.on('click', function(e) {
             var ll = e.latlng;
             app.ll = ll;
 
             app.loadVenues();
+
         });
     }
 
@@ -57,14 +60,23 @@ if (document.querySelector('.wrap1')) {
                             return {
                                 venueid: item.venue.id,
                                 name: item.venue.name,
-                                latlng: { lat: item.venue.location.lat, lng: item.venue.location.lng }
+                                latlng: { lat: item.venue.location.lat, lng: item.venue.location.lng },
+                                directionsUrl: 'https://www.google.com/maps/dir/Current+Location/'+item.venue.location.lat+','+item.venue.location.lng
                             }
                         });
                         //assign venues to vue data
                         app.venues = venues;
                         //adding venues on to map
+
+                        var markerIcon = L.icon({
+                            iconUrl: 'assets/marker.png',
+                            iconSize: [20, 20], // size of the icon
+
+                        });
                         markersGroup.clearLayers();
                         _(venues).each(function(venue) {
+
+
                             let marker = L.marker(venue.latlng).addTo(markersGroup);
                             marker.venueid = venue.venueid;
                             // console.log(marker);
@@ -87,6 +99,7 @@ if (document.querySelector('.wrap1')) {
                                         $('.modal-body').empty();
                                         $('<img src="' + source + '">').appendTo('.modal-body');
                                         $('#venueModal').modal('show');
+                                        console.log(res)
                                     }
                                 });
                             });
@@ -128,11 +141,14 @@ if (document.querySelector('.wrap2')) {
                                     venueid: item.id,
                                     name: item.name,
                                     latlng: { lat: item.location.lat, lng: item.location.lng },
-                                    address: item.location.formattedAddress.join(', ')
+                                    address: item.location.formattedAddress.join(', '),
+                                    icon: item.categories[0].icon.prefix + '88' + item.categories[0].icon.suffix,
+                                     directionsUrl: 'https://www.google.com/maps/dir/Current+Location/'+item.location.lat+','+item.location.lng
                                 }
                             });
                             app2.storedData[category] = venues;
                             app2.venues = app2.storedData[category];
+                            console.log(res)
 
 
                         }

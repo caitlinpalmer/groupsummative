@@ -106,11 +106,17 @@
             <div class="arrow"><i class="fas fa-sort-down"></i></div>
             <h4>Search Results</h4>
             <div v-for="venue in venues" class="search-item">
-               <!--  <div class="search-img">
-                </div> -->
+                <div class="search-img">
+                    <img v-bind:src="venue.icon" alt="">
+                </div>
                 <div class="search-details">
                 <h5 class="search-name">{{venue.name}}</h5>
                 <h6 class="search-info">{{venue.address}}</h6>
+
+            <div class="search-buttons">
+                 <a v-bind:href="venue.directionsUrl" target="_blank">Find Directions</a>
+             <i class="far fa-heart"></i></div>
+
             </div>
         </div></section>
         <section class="nav-section">
