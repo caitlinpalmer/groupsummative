@@ -29,10 +29,7 @@ $(function(){
 			dataType:'jsonp',
 			success:function(res){
 				var data = res.response.groups["0"].items;
-				// console.log(data);
-
 				var venues = _(data).map(function(item){
-					// console.log(item);
 
 					return {
 						latlng:{lat:item.venue.location.lat,lng:item.venue.location.lng},
@@ -41,11 +38,8 @@ $(function(){
 						category: item.venue.categories[0].name,
 					}
 				});
-				
 
 				_(venues).each(function(venue){
-
-					// console.log(venue.category)
 
 					if((venue.category == 'Café') || (venue.category == 'Coffee Shop')){
 						iconName = 'assets/cafe.svg'
@@ -63,7 +57,7 @@ $(function(){
 						iconUrl: iconName,
 						iconSize:[30,30],
 					});
-					// console.log(venue);
+
 					let marker = L.marker(venue.latlng,{icon:venueIcon}).addTo(map);
 
 
@@ -79,14 +73,11 @@ $(function(){
 
 						var ll = this._latlng;
 						$('.get-directions').data('lat',ll.lat);
-						$('.get-directions').data('lng',ll.lng)
-
-					})
-					
+						$('.get-directions').data('lng',ll.lng);
+					})					
 				});
 			}
 		});
-
 
 
 		$('#map').on('click','.showModalButton',function(){
@@ -96,7 +87,6 @@ $(function(){
 				url:venueUrl,
 				dataType:'jsonp',
 				success:function(res){
-					console.log(res);
 					var venue = res.response.venue;
 
 					console.log(venue);
@@ -111,7 +101,6 @@ $(function(){
 					// $('.modal-text').empty();
 					$('<img src="'+source+'">').appendTo('.modal-image');
 
-
 					var info = {
 						name: venue.name,
 						url: venue.url ? venue.url : '',
@@ -122,11 +111,8 @@ $(function(){
 
 					//show modal
 					$('#venueModal').modal('show');
-
 				}	
-			});
-
-			
+			});			
 		});
 
 		//directions on how to get to place
@@ -180,58 +166,10 @@ $(function(){
 			}
 		});
 
-
 		$( ".btn-primary" ).click(function() {
 			$('.venue-container').show();
-
-		});
-
-		var app = new Vue({
-			el:'.header',
-			data:{
-				venues:[],
-				keyword:''
-			},
-			methods:{
-				loadVenues: function(){
-					//ajax request
-					let urlProjects = 'https://api.foursquare.com/v2/venues/search'+key+'&limit=5&ll=-36.857011,174.764305&query='+this.keyword;
-					$.ajax({
-						url: urlProjects,
-						dataType: 'jsonp',
-						success: function(res){
-							// console.log(res);
-							// app.venues = res.response.groups;
-							var data = res.response.venues;
-							console.log(data);
-							var venues = _(data).map(function(item){
-								return {
-									venueid:item.id,
-									name:item.name,
-									latlng: {lat:item.location.lat,lng:item.location.lng}
-								}
-							});
-							//assign venues to vue data
-							app.venues = venues;
-						}
-					});
-
-				},
-				showVenue:function(event){
-					console.log(event);
-
-					var venueid = $(event.target).data('venueid');
-					venuePopup(venueid);
-
-				}
-			},
-
-			mounted:function(){
-				this.loadVenues()
-			}
 		});
 	}	
-
 });
 
 
@@ -240,8 +178,6 @@ function initMap(){
 	directionsService = new google.maps.DirectionsService;
 	
 }
-
-
 
 	var app = new Vue({
 		el:'.wrap',

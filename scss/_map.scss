@@ -1,5 +1,6 @@
 #map{
 	height: 70vh;
+	width: 100%;
 }
 
 .popup-name{
@@ -73,3 +74,17 @@
 		border-color: $dark;
 	}
 }
+
+.venue-container{
+	position: relative;
+	margin-top: 1vh;
+	padding-top: 1vh;
+	height: 20vh;
+	background-color: white;
+	z-index: 2;
+	list-style: none;
+	padding-right: 40px;
+	li{
+		border-bottom: 1px $dark solid;
+	}
+}	

@@ -22,17 +22,12 @@
 			<div class="header-logo">
 				<i class="fas fa-map-pin fas fa-2x"></i>
 			</div>
-			<form class="header-search" action="" @submit.prevent="loadVenues">
-				<input type="text" class="form-control" id="keyword" v-model:value="keyword">
+			<form class="header-search" action="">
+				<input type="text" class="form-control" id="keyword">
 				<button type="submit" class="submit-search"> 
 					<i class="fal fa-search"></i>
 				</button>
 			</form>
-			<ul class="venue-container">
-
-				<li vß-for="venue in venues" :data-venueid="venue.venueid" class="venue-item" @click="showVenue">{{venue.name}}</li>
-			
-			</ul>
 		</div>
 
 		<div id="map"></div>
