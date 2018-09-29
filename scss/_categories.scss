@@ -156,6 +156,7 @@
     }
 }
 
+
 .search-buttons {
     display: flex;
     // margin: 0.2em;
@@ -169,5 +170,11 @@
         text-align: center;
         transform: translate(30%,10%);
         flex: 0 0 20%;
+    }
+}
+
+.custom-button {
+    a {
+        color: $secondary;
     }
 }

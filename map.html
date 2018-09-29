@@ -15,17 +15,6 @@
 
 <body>
     <div class="wrap1">
-        <!-- <div class="map-search">
-            <form id="mapform" action="" @submit.prevent="loadVenues">
-                <div class="header-search"><a href="#"><i class="fal fa-search"></i></a> -->
-        <!--  <input type="text" name="search" id="keyword" v-model:value="keyword" placeholder="Search">
-                </div> -->
-        <!-- <div class="header-search"><select name="cars">
-                    <option id="keyword" v-model:value="food">Volvo</option>
-                    <option id="keyword" v-model:value="drinks">Saab</option>
-                    <option id="keyword" v-model:value="hotel">Fiat</option>
-                    <option id="keyword" v-model:value="food">Audi</option>
-                </select></div> -->
     </div>
     <div class="modal fade" id="venueModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -42,27 +31,29 @@
                     <div class="address">
                         <div class="address-logo"><i class="fal fa-address-book"></i></div>
                         <h6 class="venue-location">Modal body text goes here.</h6></div>
-                    <!--  <h6 class="venue-contact">Modal body text goes here.</h6> --></div>
+                    <div class="contact">
+                        <div class="contact-logo"><i class="fal fa-phone"></i></div>
+                        <h6 class="venue-contact">Modal body text goes here.</h6>
+                    </div>
+                    <div class="website">
+                        <div class="website-logo"><i class="fal fa-browser"></i></div>
+                        <h6 class="venue-website"><a v-bind:href="venue.url"></a></h6>
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <a v-bind:href="venue.directionsUrl" target="_blank">Find Directions</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> <a v-bind:href="venue.directionsUrl" target="_blank">Find Directions</a></button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Add to Favourites</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="mapheader">
-        <div class="mh-logo"><i class="fas fa-map-pin fas fa-2x"></i>
+        <div class="mh-logo"></i>
         </div>
         <div class="header-text">
             <h3>Auckland's Top Picks</h3><span>Tap anywhere on the map to see what Auckland has in store for you.</span>
         </div>
     </div>
-    <!-- <div>
-            <form action="">
-                <div class="header-search"><a href="#"><i class="fal fa-search"></i></a>
-                    <input type="text" name="search" id="headerSearch" placeholder="Search">
-            </form>
-            </div> -->
     </div>
     <div class="map-wrapper">
         <div id="map"></div>
@@ -70,12 +61,14 @@
     </div>
     <div class="navi-fixed">
         <ul class="icons">
-            <li><a href="index.html"><i class="fal fa-search"></i></a></li>
+            <li><a href="homepage.html"><i class="fal fa-search"></i></a></li>
             <li><a href="map.html"><i class="fal fa-map-marker-alt"></i></a></li>
             <li><a href="#"><i class="fal fa-heart"></i></a></li>
             <li><a href="#"><i class="fal fa-user"></i></a></li>
         </ul>
     </div>
+    <div class="custom-button2"></div>
+    <script src="assets/anime.js"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>

@@ -29,7 +29,7 @@
     margin: 1em;
 }
 
-.address {
+.address, .contact, .website {
     display: flex;
     &-logo {
         flex: 0 0 25%;
@@ -41,8 +41,9 @@
     }
 }
 
-.venue-location {
+.venue-location, .venue-contact, .venue-website {
     width: 90%;
+    margin:0.5em;
 }
 
 h6 {
@@ -51,6 +52,8 @@ h6 {
 
 .header-text {
     margin: 1em;
+    margin-left: 2em;
+    color: #fff;
 }
 
 .custom-popup {
@@ -114,38 +117,4 @@ h6 {
 /*destop*/
 
 @media only screen and (min-width: 80em) {
-
-    .venue-container {
-        background-color: white;
-    }
-
-    * {
-        margin: 0;
-    }
-
-    form {
-        z-index: 1000;
-        background-color: transparent;
-        position: absolute;
-        top: 2%;
-        left: 2%;
-        width: 300px;
-    }
-
-    .navi-fixed {
-        display: none;
-    }
-
-
-    .mapwrap {
-        display: flex;
-    }
-
-    .mapwrap>div {
-        flex: 0 0 50%;
-    }
-
-    #map {
-        height: 100vh;
-    }
 }

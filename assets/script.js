@@ -1,6 +1,6 @@
 const version = '?v=20170901';
-const clientid = '&client_id=KNF51RSAJA1DUYSP3GLGFO1UYIZTEX15EAJPNBMEJISHYKFY';
-const clientSecret = '&client_secret=5TDNRKGHJCSU54LN4Q0X3UWZMTCDTYXTZDSYFGACQDS5MEPE';
+const clientid = '&client_id=WS0DMFO2BVA2ELKJVEYNPPYWJH33XANXUF2TISUSG4YX3OE3';
+const clientSecret = '&client_secret=ZCYMDWN213PUNCDRXS3UFADFGWZVGECIJLNPGBT5FQSFOVKF';
 const key = version + clientid + clientSecret;
 
 let mylocation = { lat: 1, lng: 1 };
@@ -61,7 +61,7 @@ if (document.querySelector('.wrap1')) {
                                 venueid: item.venue.id,
                                 name: item.venue.name,
                                 latlng: { lat: item.venue.location.lat, lng: item.venue.location.lng },
-                                directionsUrl: 'https://www.google.com/maps/dir/Current+Location/'+item.venue.location.lat+','+item.venue.location.lng
+                                directionsUrl: 'https://www.google.com/maps/dir/Current+Location/' + item.venue.location.lat + ',' + item.venue.location.lng
                             }
                         });
                         //assign venues to vue data
@@ -92,6 +92,11 @@ if (document.querySelector('.wrap1')) {
                                         $('.modal-title').text(venue.name);
                                         if (venue.location.formattedAddress) {
                                             $('.venue-location').text(venue.location.formattedAddress.join(', '));
+                                        }
+                                        $('.venue-contact').text(venue.contact.formattedPhone)
+                                        $('.venue-website').text(venue.url)
+                                        if (venue.url) {
+                                            websiteUrl: venue.url
                                         }
 
                                         let photo = venue.bestPhoto;
@@ -143,7 +148,7 @@ if (document.querySelector('.wrap2')) {
                                     latlng: { lat: item.location.lat, lng: item.location.lng },
                                     address: item.location.formattedAddress.join(', '),
                                     icon: item.categories[0].icon.prefix + '88' + item.categories[0].icon.suffix,
-                                     directionsUrl: 'https://www.google.com/maps/dir/Current+Location/'+item.location.lat+','+item.location.lng
+                                    directionsUrl: 'https://www.google.com/maps/dir/Current+Location/' + item.location.lat + ',' + item.location.lng
                                 }
                             });
                             app2.storedData[category] = venues;
@@ -207,3 +212,21 @@ $(document).ready(function() {
         $('.bar-nav').toggleClass('open')
     });
 });
+
+//Launch Animation
+
+let duration = anime({
+    targets: '.launch-layer',
+    translateY: 200,
+    duration: 5000
+});
+
+let btn = document.querySelector('.custom-button2')
+
+btn.onclick = function() {
+    var fadeOut = anime({
+        targets: '.launch-animation',
+        translateY: -1000,
+        duration: 5000
+    });
+}

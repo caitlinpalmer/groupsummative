@@ -1,74 +1,124 @@
 html,
 body {
-  height: 100%;
-  background-color: #fff;
+    height: 100%;
+    background-color: #fff;
+    font-family: Raleway;
 }
 
 .text-center {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff;
 }
 
 .form-signin {
-  background-color: $dark;
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+    background-color: #fff;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }
+
+form {
+    background-color: #fff;
+    h3 {
+        color: $secondary !important;
+        font-family: 'Roboto' !important;
+    }
+    i {
+        color: $secondary !important;
+    }
+}
+
 .form-signin .checkbox {
-  font-weight: 400;
+    font-weight: 400;
 }
+
 .form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
 }
+
 .form-signin .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
+
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
+
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-h3{
-  color: white !important;
-}
-label{
-  color: white;
-}
-a{
-  color: blue; 
-}
-.fab{
-  color: white;
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-.btn-primary{
-  color: $primary;
-  background-color: white;
-
+label {
+    color: black;
 }
 
-.btn-social{
-  width:80%;
-  margin: auto;
+.guest-login>a>p {
+    color: $secondary;
 }
 
-p{
-  margin-top: 1em;
-  text-decoration: underline;
-  color: white;
+.fab {
+    color: white;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: $secondary;
+    a {
+        color: #fff;
+    }
+}
+
+.btn-social {
+    width: 80%;
+    margin: auto;
+}
+
+p {
+    margin-top: 1em;
+    text-decoration: underline;
+    color: white;
+}
+
+.launch-animation {
+    height: 100vh;
+    z-index: 100;
+    background-color: $secondary;
+    position: absolute;
+    width: 100%;
+}
+
+.launch-layer {
+    transform: translateY(150%);
+    i, h3 {
+        color: #fff;
+    }
+}
+
+
+.guest-login {
+    color: $secondary !important;
+}
+
+.custom-button2 {
+    border: solid 1.5px #fff;
+    background-color: $secondary;
+    width: 150px;
+    height: 50px;
+    a {
+        color: #fff;
+    }
 }
